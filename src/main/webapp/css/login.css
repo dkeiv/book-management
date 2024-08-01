@@ -3,7 +3,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #5698bf;
+    /*background-color: #5698bf;*/
+    background-image: url("https://th.bing.com/th/id/R.27ce2a19f2ccc57cc3da7abf3756a0f6?rik=dmV2CnLxz3PeSA&pid=ImgRaw&r=0");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .wrapper {
