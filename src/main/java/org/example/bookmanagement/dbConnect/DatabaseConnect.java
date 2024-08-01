@@ -5,7 +5,7 @@ import java.sql.*;
 public class DatabaseConnect {
     private static final String JDBC_URL = System.getenv("JDBC_URL");
     private static final String JDBC_USER = System.getenv("JDBC_USER");
-    private static final String JDBC_PASSWORD = System.getenv("JDBC_PASSWORD");
+    private static final String JDBC_PASSWORD = System.getenv("     ");
 
     public static Connection getCon() {
         Connection connection = null;
