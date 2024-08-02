@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS book
     description   NVARCHAR(150),
     publisher     NVARCHAR(50),
     img_url       NVARCHAR(255),
+    `condition`     NVARCHAR(10),
     borrow_status BOOLEAN DEFAULT FALSE
 );
 
@@ -15,6 +16,12 @@ CREATE TABLE IF NOT EXISTS category
 (
     id   INT AUTO_INCREMENT PRIMARY KEY,
     name NVARCHAR(15)
+);
+
+CREATE TABLE IF NOT EXISTS publisher
+(
+    id   INT AUTO_INCREMENT PRIMARY KEY,
+    name NVARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS book_category
@@ -37,7 +44,7 @@ CREATE TABLE IF NOT EXISTS user
 (
     id       INT AUTO_INCREMENT PRIMARY KEY,
     name     NVARCHAR(50) NOT NULL,
-    course    NVARCHAR(50) NOT NULL,
+    course   NVARCHAR(50) NOT NULL,
     birthday DATE,
     active   BOOLEAN DEFAULT TRUE
 );
