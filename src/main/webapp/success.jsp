@@ -4,4 +4,5 @@
     <h1>
         <c:out value="${message}" />
     </h1>
+    <a href="${pageContext.request.contextPath}/?">Back</a>
 </div>
