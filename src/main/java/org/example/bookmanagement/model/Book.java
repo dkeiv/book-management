@@ -4,48 +4,37 @@ public class Book {
     private int id;
     private String name;
     private String publisher;
-    private String description;
     private String imageURL;
-    private String condition;
-    private boolean borrowed;
-
+    private String status;
+//    boolean borrowedStatus;
 
     // for update
     public Book() {
     }
 
-    public Book(String name, String publisher, String description, String imageURL, String condition, boolean borrowed) {
+    public Book(String name, String publisher, String imageURL, String status, boolean borrowedStatus) {
         this.name = name;
         this.publisher = publisher;
-        this.description = description;
         this.imageURL = imageURL;
-        this.condition = condition;
-        this.borrowed = borrowed;
+        this.status = status;
+        this.borrowedStatus = borrowedStatus;
     }
 
-    public Book(int id, String name, String publisher, String description, String imageURL, String condition, boolean borrowed) {
-        this(name, publisher, description, imageURL, condition, borrowed);
+    public Book(int id, String name, String publisher, String imageURL, String status, boolean borrowedStatus) {
+        this(name, publisher, imageURL, status, borrowedStatus);
         this.id = id;
     }
 
-    public boolean isBorrowed() {
-        return borrowed;
+    public boolean isBorrowedStatus() {
+        return borrowedStatus;
     }
 
-    public void setBorrowed(boolean borrowed) {
-        this.borrowed = borrowed;
+    public void setBorrowedStatus(boolean borrowedStatus) {
+        this.borrowedStatus = borrowedStatus;
     }
 
     public int getId() {
         return id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getImageURL() {
@@ -72,11 +61,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getStatus() {
+        return status;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
