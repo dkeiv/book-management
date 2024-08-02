@@ -9,6 +9,7 @@ public class Book {
     private String condition;
     private boolean borrowed;
 
+
     // for update
     public Book() {
     }
