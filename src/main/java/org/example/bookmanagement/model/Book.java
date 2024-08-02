@@ -4,37 +4,47 @@ public class Book {
     private int id;
     private String name;
     private String publisher;
+    private String description;
     private String imageURL;
-    private String status;
-    boolean borrowedStatus;
+    private String condition;
+    private boolean borrowed;
 
     // for update
     public Book() {
     }
 
-    public Book(String name, String publisher, String imageURL, String status, boolean borrowedStatus) {
+    public Book(String name, String publisher, String description, String imageURL, String condition, boolean borrowed) {
         this.name = name;
         this.publisher = publisher;
+        this.description = description;
         this.imageURL = imageURL;
-        this.status = status;
-        this.borrowedStatus = borrowedStatus;
+        this.condition = condition;
+        this.borrowed = borrowed;
     }
 
-    public Book(int id, String name, String publisher, String imageURL, String status, boolean borrowedStatus) {
-        this(name, publisher, imageURL, status, borrowedStatus);
+    public Book(int id, String name, String publisher, String description, String imageURL, String condition, boolean borrowed) {
+        this(name, publisher, description, imageURL, condition, borrowed);
         this.id = id;
     }
 
-    public boolean isBorrowedStatus() {
-        return borrowedStatus;
+    public boolean isBorrowed() {
+        return borrowed;
     }
 
-    public void setBorrowedStatus(boolean borrowedStatus) {
-        this.borrowedStatus = borrowedStatus;
+    public void setBorrowed(boolean borrowed) {
+        this.borrowed = borrowed;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImageURL() {
@@ -61,11 +71,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public String getStatus() {
-        return status;
+    public String getCondition() {
+        return condition;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 }
