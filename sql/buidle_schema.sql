@@ -17,6 +17,12 @@ CREATE TABLE IF NOT EXISTS category
     name NVARCHAR(15)
 );
 
+CREATE TABLE IF NOT EXISTS publisher
+(
+    id   INT AUTO_INCREMENT PRIMARY KEY,
+    name NVARCHAR(50) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS book_category
 (
     category_id INT,
