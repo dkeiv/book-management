@@ -6,7 +6,7 @@ public class Book {
     private String publisher;
     private String imageURL;
     private String status;
-    boolean borrowedStatus;
+//    boolean borrowedStatus;
 
     // for update
     public Book() {
