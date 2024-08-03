@@ -10,6 +10,7 @@ public class User {
     private Date birthday;
     private boolean active = true;
 
+
     // for update
     public User() {
     }
