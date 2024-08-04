@@ -5,7 +5,7 @@ public class Book {
     private String name;
     private String publisher;
     private String description;
-    private String imageURL;
+    private String imgUrl;
     private String condition;
     private boolean borrowed;
 
@@ -13,17 +13,17 @@ public class Book {
     public Book() {
     }
 
-    public Book(String name, String publisher, String description, String imageURL, String condition, boolean borrowed) {
+    public Book(String name, String publisher, String description, String imgUrl, String condition, boolean borrowed) {
         this.name = name;
         this.publisher = publisher;
         this.description = description;
-        this.imageURL = imageURL;
+        this.imgUrl = imgUrl;
         this.condition = condition;
         this.borrowed = borrowed;
     }
 
-    public Book(int id, String name, String publisher, String description, String imageURL, String condition, boolean borrowed) {
-        this(name, publisher, description, imageURL, condition, borrowed);
+    public Book(int id, String name, String publisher, String description, String imgUrl, String condition, boolean borrowed) {
+        this(name, publisher, description, imgUrl, condition, borrowed);
         this.id = id;
     }
 
@@ -47,12 +47,12 @@ public class Book {
         this.description = description;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getName() {

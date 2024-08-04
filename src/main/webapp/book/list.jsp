@@ -16,18 +16,19 @@
     <c:forEach var="book" items="${bookList}">
         <c:set var="count" value="${count + 1}" scope="page"/>
         <tr>
+
+            <td><c:out value="${count}"/></td>
             <td>
                 <img src="${book.imgUrl}" alt="${book.name}" />
             </td>
-            <td><c:out value="${count}"/></td>
             <td><c:out value="${book.name}"/></td>
             <td><c:out value="${book.publisher}"/></td>
             <td><c:out value="${book.condition}"/></td>
-            <td><c:out value="${book.borrowStatus}"/></td>
+            <td><c:out value="${book.borrowed}"/></td>
             <td>
-                <a href="?&productId=${book.id}">Edit</a>
+                <a href="edit-book-form?bookId=${book.id}">Edit</a>
                 -
-                <a href="?&productId=${book.id}">Delete</a>
+                <a href="edit-book-form?bookId=${book.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>
