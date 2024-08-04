@@ -27,12 +27,12 @@ public class Book {
         this.id = id;
     }
 
-    public boolean isBorrowed() {
-        return borrowed;
+    public boolean isBorrowedStatus() {
+        return borrowedStatus;
     }
 
-    public void setBorrowed(boolean borrowed) {
-        this.borrowed = borrowed;
+    public void setBorrowedStatus(boolean borrowedStatus) {
+        this.borrowedStatus = borrowedStatus;
     }
 
     public int getId() {
@@ -71,11 +71,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getStatus() {
+        return status;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
