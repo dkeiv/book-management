@@ -16,23 +16,11 @@
         <table>
             <tr>
                 <td>Id: </td>
-                <td><input name="id" value="${userId}" readonly></td>
+                <td><input name="categoryId" value="${categoryId}" readonly></td>
             </tr>
             <tr>
                 <td>Name: </td>
-                <td>${requestScope["user"].getName}</td>
-            </tr>
-            <tr>
-                <td>Address: </td>
-                <td>${requestScope["user"].getAddress}</td>
-            </tr>
-            <tr>
-                <td>Course: </td>
-                <td>${requestScope["user"].getCourse}</td>
-            </tr>
-            <tr>
-                <td>Birthday: </td>
-                <td>${requestScope["user"].getBirthdayd}</td>
+                <td>${requestScope["category"].getName()}</td>
             </tr>
             <tr>
                 <td><input type="submit" value="Delete category"></td>

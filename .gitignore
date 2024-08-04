@@ -44,3 +44,5 @@ bin/
 
 ##
 .env
+.gitignore
+test*.*
