@@ -2,6 +2,7 @@ package org.example.bookmanagement.model;
 
 public class Book {
     private int id;
+    private String isbn;
     private String name;
     private String publisher;
     private String description;
@@ -13,7 +14,8 @@ public class Book {
     public Book() {
     }
 
-    public Book(String name, String publisher, String description, String imgUrl, String condition, boolean borrowed) {
+    public Book(String isbn, String name, String publisher, String description, String imgUrl, String condition, boolean borrowed) {
+        this.isbn = isbn;
         this.name = name;
         this.publisher = publisher;
         this.description = description;
@@ -22,17 +24,25 @@ public class Book {
         this.borrowed = borrowed;
     }
 
-    public Book(int id, String name, String publisher, String description, String imgUrl, String condition, boolean borrowed) {
-        this(name, publisher, description, imgUrl, condition, borrowed);
+    public Book(int id, String isbn, String name, String publisher, String description, String imgUrl, String condition, boolean borrowed) {
+        this(isbn, name, publisher, description, imgUrl, condition, borrowed);
         this.id = id;
     }
 
-    public boolean isBorrowedStatus() {
-        return borrowedStatus;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setBorrowedStatus(boolean borrowedStatus) {
-        this.borrowedStatus = borrowedStatus;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public boolean isBorrowed() {
+        return borrowed;
+    }
+
+    public void setBorrowed(boolean borrowed) {
+        this.borrowed = borrowed;
     }
 
     public int getId() {
@@ -71,11 +81,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public String getStatus() {
-        return status;
+    public String getCondition() {
+        return condition;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 }

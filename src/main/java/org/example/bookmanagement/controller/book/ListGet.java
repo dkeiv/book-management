@@ -27,6 +27,7 @@ public class ListGet extends HttpServlet {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
+                String isbn = resultSet.getString("isbn");
                 String name = resultSet.getString("name");
                 String publisher = resultSet.getString("publisher");
                 String description = resultSet.getString("description");
@@ -34,7 +35,7 @@ public class ListGet extends HttpServlet {
                 String condition = resultSet.getString("condition");
                 boolean borrowed = resultSet.getBoolean("borrow_status");
 
-                bookList.add(new Book(id, name, publisher,description, imgUrl, condition, borrowed));
+                bookList.add(new Book(id, isbn, name, publisher, description, imgUrl, condition, borrowed));
             }
 
             request.setAttribute("bookList", bookList);

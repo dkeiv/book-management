@@ -1,10 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../navbar.jsp"%>
 <table class="table table-striped table-hover">
     <thead>
     <tr>
         <th>#</th>
         <th>Picture</th>
+        <th>ISBN</th>
         <th>Book Name</th>
         <th>Publisher</th>
         <th>Condition</th>
@@ -21,6 +23,7 @@
             <td>
                 <img src="${book.imgUrl}" alt="${book.name}" />
             </td>
+            <td><c:out value="${book.isbn}"/></td>
             <td><c:out value="${book.name}"/></td>
             <td><c:out value="${book.publisher}"/></td>
             <td><c:out value="${book.condition}"/></td>

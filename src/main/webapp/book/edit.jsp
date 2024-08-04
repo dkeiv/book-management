@@ -1,7 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../header.jsp"%>
 <form method="POST" action="${pageContext.request.contextPath}/edit-book">
     <input type="hidden" readonly name="bookId" value="${book.id}">
     <table>
+        <tr>
+            <td>
+                <label for="bookIsbn">ISBN</label>
+            </td>
+            <td>
+                <input id="bookIsbn" name="bookIsbn" value="${book.isbn}" required>
+            </td>
+        </tr>
         <tr>
             <td>
                 <label for="bookName">Name</label>
@@ -36,11 +45,12 @@
                 <label for="bookCategory">Category</label>
             </td>
             <td>
-                <select id="bookCategory" name="bookCategory" multiple readonly>
+                <select id="bookCategory" class="form-select" size="3" name="bookCategory" multiple="multiple" readonly>
                     <c:forEach var="category" items="${categoryList}">
-                        <%--                        <c:if test="${category.name == book.category}">selected</c:if>--%>
                         <option value="${category.id}"
-                        >${category.name}</option>
+                                <c:if test="${bookCategoryList.contains(category.name)}">selected</c:if>>
+                                ${category.name}
+                        </option>
                     </c:forEach>
                 </select>
             </td>
@@ -52,7 +62,7 @@
                 </label>
             </td>
             <td>
-                <input id="bookImage" type="url" value="${book.imgUrl}">
+                <input id="bookImage" type="url" value="${book.imgUrl}" name="bookImage">
             </td>
         </tr>
         <tr>

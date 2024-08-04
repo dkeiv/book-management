@@ -7,5 +7,8 @@
     <li>
         <a href="${pageContext.request.contextPath}/borrow-book-form">Borrow Book</a>
     </li>
+    <li>
+        <a href="${pageContext.request.contextPath}/create-book-form">Create Book</a>
+    </li>
 </ul>
 

@@ -26,8 +26,12 @@ public class EditFormGet extends HttpServlet {
             List<Category> categoryList = bookDAO.getAllCategory();
             request.setAttribute("categoryList", categoryList);
 
+            List<String> bookCategoryList = bookDAO.getCategoryByBookId(id);
+            request.setAttribute("bookCategoryList", bookCategoryList);
+
             Book book = bookDAO.getBookById(id);
             request.setAttribute("book", book);
+
             RequestDispatcher view = request.getRequestDispatcher("book/edit.jsp");
             view.forward(request, response);
         } catch (SQLException e) {
