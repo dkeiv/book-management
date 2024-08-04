@@ -1,2 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<ul>
+    <li>
+        <a href="${pageContext.request.contextPath}/list-book">Book</a>
+    </li>
+    <li>
+        <a href="${pageContext.request.contextPath}/borrow-book-form">Borrow Book</a>
+    </li>
+</ul>
+
