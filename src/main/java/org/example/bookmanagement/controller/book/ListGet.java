@@ -34,7 +34,7 @@ public class ListGet extends HttpServlet {
                 String condition = resultSet.getString("condition");
                 boolean borrowedStatus = resultSet.getBoolean("borrowed_status");
 
-                bookList.add(new Book(id, name, publisher,description, imgUrl, condition, borrowedStatus));
+//                bookList.add(new Book(id, name, publisher,description, imgUrl, condition, borrowedStatus));
             }
 
             request.setAttribute("bookList", bookList);
