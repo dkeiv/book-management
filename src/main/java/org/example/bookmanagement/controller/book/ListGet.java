@@ -27,14 +27,15 @@ public class ListGet extends HttpServlet {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
+                String isbn = resultSet.getString("isbn");
                 String name = resultSet.getString("name");
                 String publisher = resultSet.getString("publisher");
                 String description = resultSet.getString("description");
                 String imgUrl = resultSet.getString("img_url");
                 String condition = resultSet.getString("condition");
-                boolean borrowedStatus = resultSet.getBoolean("borrowed_status");
+                boolean borrowed = resultSet.getBoolean("borrow_status");
 
-                bookList.add(new Book(id, name, publisher,description, imgUrl, condition, borrowedStatus));
+                bookList.add(new Book(id, isbn, name, publisher, description, imgUrl, condition, borrowed));
             }
 
             request.setAttribute("bookList", bookList);
