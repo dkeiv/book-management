@@ -28,7 +28,7 @@ public class CategoryDAO implements ICategoryDAO{
     }
 
     @Override
-    public boolean updateCategory(Category category) throws SQLException {
+    public boolean updateCategory(int id, Category category) throws SQLException {
         try (Connection connection = DatabaseConnect.getCon();
              PreparedStatement statement = connection.prepareStatement(UPDATE_CATEGORY)) {
             statement.setString(1, category.getName());
@@ -52,16 +52,18 @@ public class CategoryDAO implements ICategoryDAO{
     }
 
     @Override
-    public List<Category> getCategoryById(int id) throws SQLException {
-        List<Category> categories = new ArrayList<>();
+    public Category getCategoryById(int id) throws SQLException {
+        Category category = null;
         try (Connection connection = DatabaseConnect.getCon(); PreparedStatement statement = connection.prepareStatement(GET_CATEGORY_BY_ID)) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                 categories.add(new Category(resultSet.getInt("id"), resultSet.getString("name")));
+            if (resultSet.next()) {
+                int categoryId = resultSet.getInt("id");
+                String categoryName = resultSet.getString("name");
+                category = new Category(categoryId, categoryName);
             }
         }
-        return categories;
+        return category;
     }
 
     @Override
