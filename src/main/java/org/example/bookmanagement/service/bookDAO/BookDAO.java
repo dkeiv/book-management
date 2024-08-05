@@ -1,12 +1,13 @@
-package org.example.bookmanagement.service;
+package org.example.bookmanagement.service.bookDAO;
 
 import org.example.bookmanagement.dbConnect.DatabaseConnect;
 import org.example.bookmanagement.model.Book;
-import org.example.bookmanagement.model.BorrowDetail;
+import org.example.bookmanagement.model.BorrowBook;
 import org.example.bookmanagement.model.Category;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BookDAO implements BookDAOInterface {
@@ -15,7 +16,7 @@ public class BookDAO implements BookDAOInterface {
     @Override
     public boolean deleteBook(int id) throws SQLException {
 
-        String sql = "DELETE FROM book WHERE id = ?";
+        String sql = "DELETE FROM book WHERE id = ? AND borrow_status = FALSE";
 
         try (Connection connection = DatabaseConnect.getCon()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -211,41 +212,84 @@ public class BookDAO implements BookDAOInterface {
     }
 
     @Override
-    public void borrowBook(BorrowDetail detail) throws SQLException {
+    public Book getBookByIsbn(String isbn) throws SQLException {
+        String query = "SELECT * FROM book WHERE isbn = ?";
+
         try (Connection connection = DatabaseConnect.getCon()) {
-            String query = "INSERT INTO borrow_detail (book_id, user_id, status, borrow_date, return_date) VALUES (?, ?, ?, ?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, detail.getBookId());
-            preparedStatement.setInt(2, detail.getUserId());
-            preparedStatement.setString(3, detail.getStatus());
-            preparedStatement.setDate(4, detail.getBorrowDate());
-            preparedStatement.setDate(5, detail.getReturnDate());
+            preparedStatement.setString(1, isbn);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return makeBookFromResultSet(resultSet);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void insertBorrowBook(BorrowBook borrowBook) throws SQLException {
+        String query = "INSERT INTO borrow_book (user_id, book_isbn, status, borrow_date, return_date) VALUES (?, ?, ?, ?, ?)";
+        String query2= "UPDATE book SET borrow_status = TRUE WHERE isbn = ?";
+        try (Connection connection = DatabaseConnect.getCon()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, borrowBook.getUserId());
+            preparedStatement.setString(2, borrowBook.getBookIsbn());
+            preparedStatement.setString(3, borrowBook.getStatus());
+            preparedStatement.setDate(4, borrowBook.getBorrowDate());
+            preparedStatement.setDate(5, borrowBook.getReturnDate());
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+            PreparedStatement preparedStatement2 = connection.prepareStatement(query2);
+            preparedStatement2.setString(1, borrowBook.getBookIsbn());
+            preparedStatement2.executeUpdate();
         }
     }
 
     @Override
-    public BorrowDetail getBorrowDetail(int id) throws SQLException {
-        try (Connection connection = DatabaseConnect.getCon()) {
-            String query = "SELECT * FROM book_borrowed WHERE id = ?";
+    public List<BorrowBook> getAllBorrowBook() throws SQLException {
+        List<BorrowBook> borrowBookList = new ArrayList<>();
+        String query = "SELECT * FROM borrow_book";
 
+        try (Connection connection = DatabaseConnect.getCon()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int userId = resultSet.getInt("user_id");
+                String bookIsbn = resultSet.getString("book_isbn");
+                String status = resultSet.getString("status");
+                Date borrowDate = resultSet.getDate("borrow_date");
+                Date returnDate = resultSet.getDate("return_date");
+
+                borrowBookList.add(new BorrowBook(id, userId, bookIsbn, status, borrowDate, returnDate));
+            }
+        }
+        return borrowBookList;
+    }
+
+    @Override
+    public BorrowBook getBorrowBookById(int id) throws SQLException {
+        String query = "SELECT * FROM borrow_book WHERE id = ?";
+        try (Connection connection = DatabaseConnect.getCon()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int borrowId = resultSet.getInt("id");
+                int userId = resultSet.getInt("user_id");
+                String bookIsbn = resultSet.getString("book_isbn");
+                String status = resultSet.getString("status");
+                Date borrowDate = resultSet.getDate("borrow_date");
+                Date returnDate = resultSet.getDate("return_date");
 
-            int bookId = resultSet.getInt("book_id");
-            int userId = resultSet.getInt("user_id");
-            String status = resultSet.getString("status");
-            Date borrowDate = resultSet.getDate("borrow_date");
-            Date returnDate = resultSet.getDate("return_date");
-
-            return new BorrowDetail(bookId, userId, borrowDate, returnDate, status.toUpperCase());
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+                return new BorrowBook(borrowId, userId, bookIsbn, status, borrowDate, returnDate);
+            }
         }
         return null;
+    }
+
+    @Override
+    public List<BorrowBook.Status> getBorrowedStatus() throws SQLException {
+        return Arrays.asList(BorrowBook.Status.values());
     }
 }

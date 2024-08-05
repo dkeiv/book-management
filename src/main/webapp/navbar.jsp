@@ -10,5 +10,11 @@
     <li>
         <a href="${pageContext.request.contextPath}/create-book-form">Create Book</a>
     </li>
+    <li>
+        <a href="${pageContext.request.contextPath}/list-borrow">Borrow Book List</a>
+    </li>
+    <li>
+        <a href="${pageContext.request.contextPath}/borrow-book-form">Borrow Book Form</a>
+    </li>
 </ul>
 
