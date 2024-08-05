@@ -40,4 +40,8 @@ public interface BookDAOInterface {
     BorrowBook getBorrowBookById(int id) throws SQLException;
 
     List<BorrowBook.Status> getBorrowedStatus() throws SQLException;
+
+    void deleteBorrowBook(int id) throws SQLException;
+
+    void updateBorrow(BorrowBook borrowBook) throws SQLException;
 }
