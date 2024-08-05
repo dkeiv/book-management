@@ -16,8 +16,10 @@ public class CreateFormGet extends HttpServlet {
     BookDAOInterface bookDAO = new BookDAO();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+
             List<String> publisherList = bookDAO.getAllPublisher();
             request.setAttribute("publisherList", publisherList);
+
             List<Category> categoryList = bookDAO.getAllCategory();
             request.setAttribute("categoryList", categoryList);
 
