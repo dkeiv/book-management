@@ -1,14 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="../header.jsp" %>
+<%@ include file="../header.jsp"%>
+<%@ include file="../navbar.jsp"%>
 <form method="POST" action="${pageContext.request.contextPath}/edit-book">
-    <input type="hidden" readonly name="bookId" value="${book.id}">
     <table>
         <tr>
             <td>
                 <label for="bookIsbn">ISBN</label>
             </td>
             <td>
-                <input id="bookIsbn" name="bookIsbn" value="${book.isbn}" required>
             </td>
         </tr>
         <tr>
@@ -24,7 +23,6 @@
                 <label for="bookCondition">Condition</label>
             </td>
             <td>
-                <input id="bookCondition" name="bookCondition" value="${book.condition}">
             </td>
         </tr>
         <tr>
@@ -32,12 +30,7 @@
                 <label for="bookPublisher">Publisher</label>
             </td>
             <td>
-                <select id="bookPublisher" name="bookPublisher" required readonly>
-                    <c:forEach var="publisher" items="${publisherList}">
-                        <option value="${publisher}"
-                                <c:if test="${publisher == book.publisher}">selected</c:if> >${publisher}</option>
-                    </c:forEach>
-                </select>
+
             </td>
         </tr>
         <tr>
@@ -95,4 +88,54 @@
             </td>
         </tr>
     </table>
+
+    <head>
+        <title>Edit Librarian</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+    <div class="container mt-4">
+        <h2>Edit Librarian</h2>
+
+        <% if (request.getParameter("message") != null) { %>
+        <div class="alert alert-success" role="alert">
+            <%= request.getParameter("message") %>
+        </div>
+        <% } %>
+
+        <form action="${pageContext.request.contextPath}/edit-librarian" method="post">
+
+            <input type="hidden" readonly name="bookId" value="${book.id}">
+
+            <div class="form-group">
+                <label for="bookIsbn">Name:</label>
+                <input type="text" class="form-control" id="bookIsbn" name="bookIsbn" value="${book.isbn}" required>
+
+            </div>
+
+            <div class="form-group">
+                <label for="bookCondition">Condition:</label>
+                <input type="text" class="form-control" id="bookCondition" name="bookCondition" value="${book.condition}">
+
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <select id="bookPublisher" name="bookPublisher" required readonly>
+                    <c:forEach  var="publisher" items="${publisherList}">
+                        <option value="${publisher}"
+                                <c:if test="${publisher == book.publisher}">selected</c:if> >${publisher}</option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Librarian</button>
+            <a href="${pageContext.request.contextPath}/list-librarian" class="btn btn-secondary">Back to Librarian List</a>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
 </form>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../navbar.jsp" %>
+<%@ include file="../header.jsp"%>
+<%@ include file="../navbar.jsp"%>
 <jsp:useBean id="now" class="java.util.Date"/>
 
 <form method="POST" action="${pageContext.request.contextPath}/borrow-book">
