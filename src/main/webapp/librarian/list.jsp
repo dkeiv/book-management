@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../header.jsp"%>
+<%@ include file="../navbar.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,20 +16,28 @@
         }
     </script>
 </head>
+<style>
+    .table {
+        font-size: 13px;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+</style>
 <body>
 <div class="container mt-4">
     <center>
-        <h1>User Management</h1>
-        <h2>
-            <a href="/users?action=create">Add New User</a>
-        </h2>
+        <h1>Librarian Management</h1>
+
     </center>
     </form>
 
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
@@ -35,9 +45,12 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${librarianList}" var="librarian">
+        <c:set var="count" value="0" scope="page"/>
+        <c:forEach var="librarian" items="${librarianList}">
+            <c:set var="count" value="${count + 1}" scope="page"/>
+
             <tr>
-                <td>${librarian.id}</td>
+                <td><c:out value="${count}"/></td>
                 <td>${librarian.name}</td>
                 <td>${librarian.email}</td>
                 <td>${librarian.password}</td>

@@ -1,22 +1,72 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../header.jsp" %>
+<%@ include file="../navbar.jsp" %>
 
-<html>
+<style>
+    .table {
+        font-size: 13px;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+</style>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librarian List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function confirmDelete(url) {
+            if (confirm("Are you sure you want to delete this librarian?")) {
+                window.location.href = url;
+            }
+        }
+    </script>
 </head>
 <body>
-<table border="1">
-    <tr>
-        <td>Id</td>
-        <td>Name</td>
-    </tr>
-    <c:forEach items="${categoryList}" var="category">
+<div class="container mt-4">
+    <center>
+        <h1>Category Management</h1>
+
+    </center>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
         <tr>
-            <td>${category.getId()}</td>
-            <td>${category.getName()}</td>
-            <td><a href="/edit-category-form?categoryId=${category.getId()}">edit</a></td>
-            <td><a href="/delete-category-form?categoryId=${category.getId()}">delete</a></td>
+            <td>#</td>
+            <td>Name</td>
+            <th>Actions</th>
         </tr>
-    </c:forEach>
-</table>
+        </thead>
+        <tbody>
+        <c:set var="count" value="0" scope="page"/>
+        <c:forEach var="category" items="${categoryList}">
+            <c:set var="count" value="${count + 1}" scope="page"/>
+
+            <tr>
+                <td><c:out value="${count}"/></td>
+                <td>${category.getName()}</td>
+
+                <td>
+                    <a href="javascript:void(0);"
+                       onclick="confirmDelete('${pageContext.request.contextPath}/delete-category-form?categoryId=${category.getId()}')"
+                       class="btn btn-danger btn-sm">Delete</a>
+                    <a href="${pageContext.request.contextPath}/edit-category-form?categoryId=${category.getId()}"
+                       class="btn btn-warning btn-sm ml-2">Edit</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+
+    <a href="${pageContext.request.contextPath}/create-category-form" class="btn btn-primary">Add New</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
