@@ -1,20 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<ul>
-    <li>
-        <a href="${pageContext.request.contextPath}/list-book">Book</a>
-    </li>
-    <li>
-        <a href="${pageContext.request.contextPath}/borrow-book-form">Borrow Book</a>
-    </li>
-    <li>
-        <a href="${pageContext.request.contextPath}/create-book-form">Create Book</a>
-    </li>
-    <li>
-        <a href="${pageContext.request.contextPath}/create-user-form">Create User</a>
-    </li>
-</ul>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,12 +26,10 @@
                 <div class="nav-home">
                     <i class="fa-solid fa-house"></i>
                 </div>
-                <a href="#">HOT</a>
-                <a href="#">THEO DÕI</a>
-                <a href="#">LỊCH SỬ</a>
-                <a href="#">THỂ LOẠI</a>
-                <a href="#">XẾP HẠNG</a>
-                <a href="#">FANPAGE</a>
+                <a href="${pageContext.request.contextPath}/list-book">Book</a>
+                <a href="${pageContext.request.contextPath}/list-user">User</a>
+                <a href="${pageContext.request.contextPath}/list-category">Category</a>
+                <a href="${pageContext.request.contextPath}/list-librarian">Librarian</a>
             </div>
         </div>
     </div>

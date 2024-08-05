@@ -72,7 +72,7 @@ DROP TABLE user;
 DROP TABLE borrow_book;
 
 SET FOREIGN_KEY_CHECKS = 1;
--- SET FOREIGN_KEY_CHECKS = 0;
+# SET FOREIGN_KEY_CHECKS = 0;
 
 #########################################
 INSERT INTO book (name, isbn, description, publisher, `condition`, img_url)
@@ -133,3 +133,15 @@ VALUES ('Brad Pitt', 'C001', '1963-12-18', TRUE),
        ('Scarlett Johansson', 'C008', '1984-11-22', TRUE),
        ('Chris Hemsworth', 'C009', '1983-08-11', TRUE),
        ('Natalie Portman', 'C010', '1981-06-09', TRUE);
+
+INSERT INTO librarian (id, name, email, password) VALUES
+                                                      (1, 'Nguyen Van A', 'nguyenvana@example.com', 'password123'),
+                                                      (2, 'Tran Thi B', 'tranthib@example.com', 'password456'),
+                                                      (3, 'Le Thi C', 'lethic@example.com', 'password789'),
+                                                      (4, 'Pham Van D', 'phamvand@example.com', 'password321'),
+                                                      (5, 'Hoang Thi E', 'hoangthie@example.com', 'password654'),
+                                                      (6, 'Nguyen Thi F', 'nguyenthif@example.com', 'password987'),
+                                                      (7, 'Tran Van G', 'tranvang@example.com', 'password111'),
+                                                      (8, 'Le Van H', 'levanh@example.com', 'password222'),
+                                                      (9, 'Pham Thi I', 'phamthii@example.com', 'password333'),
+                                                      (10, 'Hoang Van J', 'hoangvanj@example.com', 'password444');
