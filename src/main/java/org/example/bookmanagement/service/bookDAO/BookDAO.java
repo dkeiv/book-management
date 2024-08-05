@@ -8,21 +8,41 @@ import org.example.bookmanagement.model.Category;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class BookDAO implements BookDAOInterface {
     // USER DAO goes here
 
     @Override
+    public List<Book> getBookByName(String name) throws SQLException {
+
+        List<Book> bookList = new ArrayList<>();
+        try (Connection connection = DatabaseConnect.getCon()) {
+            String query = "SELECT * FROM book WHERE name LIKE ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, "%" + name + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                bookList.add(makeBookFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return bookList;
+    }
+
+    @Override
     public boolean deleteBook(int id) throws SQLException {
 
-        String sql = "DELETE FROM book WHERE id = ? AND borrow_status = FALSE";
-
         try (Connection connection = DatabaseConnect.getCon()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            Book book = getBookById(id);
 
-            return preparedStatement.executeUpdate() > 0;
+            CallableStatement call = connection.prepareCall("{CALL sp_delete_book(?)}");
+            call.setString(1, book.getIsbn());
+            return call.executeUpdate() > 0;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -60,7 +80,6 @@ public class BookDAO implements BookDAOInterface {
                 return makeBookFromResultSet(resultSet);
             }
         }
-
         return null;
     }
 
@@ -121,16 +140,6 @@ public class BookDAO implements BookDAOInterface {
         return categoryList;
     }
 
-    private void updateBookCategory(String[] categoryList) throws SQLException {
-        String sql = "UPDATE book SET category = ? WHERE id = ?";
-        try (Connection connection = DatabaseConnect.getCon()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            for (String category : categoryList) {
-                preparedStatement.setString(1, category);
-            }
-        }
-    }
-
     @Override
     public void updateBook(int id, Book book) throws SQLException {
         String query = "{CALL sp_update_book(?, ?, ?, ?, ?, ?, ?, ?)}";
@@ -151,7 +160,6 @@ public class BookDAO implements BookDAOInterface {
         }
     }
 
-
     private Book makeBookFromResultSet(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String isbn = resultSet.getString("isbn");
@@ -164,11 +172,12 @@ public class BookDAO implements BookDAOInterface {
         return new Book(id, isbn, name, publisher, description, imgUrl, condition, borrowedStatus);
     }
 
-    public List<String> getBookCategory() throws SQLException {
+    public List<String> getBookCategory(String bookIsbn) throws SQLException {
         List<String> categoryList = new ArrayList<>();
-        String query = "SELECT name FROM category, book_category WHERE category_id = category.id AND book_id = ?";
+        String query = "SELECT name FROM category, book_category WHERE category_id = category.id AND book_category.book_isbn = ?";
         try (Connection connection = DatabaseConnect.getCon()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, bookIsbn);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 categoryList.add(resultSet.getString("name"));
@@ -229,7 +238,7 @@ public class BookDAO implements BookDAOInterface {
     @Override
     public void insertBorrowBook(BorrowBook borrowBook) throws SQLException {
         String query = "INSERT INTO borrow_book (user_id, book_isbn, status, borrow_date, return_date) VALUES (?, ?, ?, ?, ?)";
-        String query2= "UPDATE book SET borrow_status = TRUE WHERE isbn = ?";
+        String query2 = "UPDATE book SET borrow_status = TRUE WHERE isbn = ?";
         try (Connection connection = DatabaseConnect.getCon()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, borrowBook.getUserId());
@@ -291,5 +300,36 @@ public class BookDAO implements BookDAOInterface {
     @Override
     public List<BorrowBook.Status> getBorrowedStatus() throws SQLException {
         return Arrays.asList(BorrowBook.Status.values());
+    }
+
+    @Override
+    public void deleteBorrowBook(int id) throws SQLException {
+        try (Connection connection = DatabaseConnect.getCon()) {
+            CallableStatement callableStatement = connection.prepareCall("{call delete_borrow(?)}");
+            callableStatement.setInt(1, id);
+            callableStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateBorrow(BorrowBook borrowBook) throws SQLException {
+        String query = "UPDATE borrow_book SET user_id =?, book_isbn = ?, status = ?, borrow_date =?, return_date = ? WHERE id = ?";
+
+        try (Connection connection = DatabaseConnect.getCon()) {
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, borrowBook.getUserId());
+            preparedStatement.setString(2, borrowBook.getBookIsbn());
+            preparedStatement.setString(3, borrowBook.getStatus());
+            preparedStatement.setDate(4, borrowBook.getBorrowDate());
+            preparedStatement.setDate(5, borrowBook.getReturnDate());
+            preparedStatement.setInt(6, borrowBook.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

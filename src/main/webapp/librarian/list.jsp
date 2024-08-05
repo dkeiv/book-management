@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../header.jsp"%>
+<%@ include file="../navbar.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +10,19 @@
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+<style>
+    .table {
+        font-size: 13px;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+</style>
 <body>
 <div class="container mt-4">
+
     <form action="${pageContext.request.contextPath}/search-librarian" method="get">
         <input type="text" name="name" placeholder="name">
         <input type="submit" value="Search">
@@ -19,7 +32,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
@@ -27,9 +40,12 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${librarianList}" var="librarian">
+        <c:set var="count" value="0" scope="page"/>
+        <c:forEach var="librarian" items="${librarianList}">
+            <c:set var="count" value="${count + 1}" scope="page"/>
+
             <tr>
-                <td>${librarian.id}</td>
+                <td><c:out value="${count}"/></td>
                 <td>${librarian.name}</td>
                 <td>${librarian.email}</td>
                 <td>${librarian.password}</td>
