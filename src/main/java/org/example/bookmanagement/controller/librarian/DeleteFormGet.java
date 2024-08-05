@@ -13,13 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(value ="/list-librarian")
-public class GetListForm extends HttpServlet {
-    private static final ILibrarianDAO librarianDAO = new LibrarianDAO();
+@WebServlet(value = "/delete-librarian")
 
+public class DeleteFormGet extends HttpServlet {
+    private static final ILibrarianDAO librarianDAO =new LibrarianDAO();
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Librarian> librarianList = librarianDAO.ShowAllLibrarian();
+        int id = Integer.parseInt(req.getParameter("id"));
+        // Thực hiện xóa trước
+        librarianDAO.deleteLibrarian(id);
+
+        // Cập nhật danh sách thư viện
+        List<Librarian> librarianList = librarianDAO.showAllLibrarian();
         req.setAttribute("librarianList", librarianList);
+
+        // Chuyển tiếp đến trang hiển thị danh sách thư viện
         RequestDispatcher dispatcher = req.getRequestDispatcher("librarian/list.jsp");
         dispatcher.forward(req, resp);
     }

@@ -13,14 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(value ="/list-librarian")
-public class GetListForm extends HttpServlet {
+@WebServlet(value = "/list-librarian?name=?")
+public class SearchNameFormGet extends HttpServlet {
     private static final ILibrarianDAO librarianDAO = new LibrarianDAO();
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Librarian> librarianList = librarianDAO.ShowAllLibrarian();
-        req.setAttribute("librarianList", librarianList);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("librarian/list.jsp");
-        dispatcher.forward(req, resp);
+            String name = req.getParameter("name");  // Tên tham số phải khớp với tên trong form
+            List<Librarian> librarianList = librarianDAO.searchByName(name);
+
+            req.setAttribute("librarianList",librarianList );  // Cập nhật thuộc tính để phù hợp với tên trong JSP
+            RequestDispatcher dispatcher = req.getRequestDispatcher("librarian/list.jsp");
+            dispatcher.forward(req, resp);
+        }
     }
-}
+

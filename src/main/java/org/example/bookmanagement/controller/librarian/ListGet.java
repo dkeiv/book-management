@@ -13,14 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(value ="/list-librarian")
-public class GetListForm extends HttpServlet {
+@WebServlet(value = "/list-librarian")
+public class ListGet extends HttpServlet {
     private static final ILibrarianDAO librarianDAO = new LibrarianDAO();
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Librarian> librarianList = librarianDAO.ShowAllLibrarian();
+        List<Librarian> librarianList = librarianDAO.showAllLibrarian();
         req.setAttribute("librarianList", librarianList);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("librarian/list.jsp");
-        dispatcher.forward(req, resp);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("librarian/list.jsp");
+        requestDispatcher.forward(req, resp);
     }
 }
