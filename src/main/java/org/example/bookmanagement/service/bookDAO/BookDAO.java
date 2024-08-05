@@ -238,7 +238,7 @@ public class BookDAO implements BookDAOInterface {
     @Override
     public void insertBorrowBook(BorrowBook borrowBook) throws SQLException {
         String query = "INSERT INTO borrow_book (user_id, book_isbn, status, borrow_date, return_date) VALUES (?, ?, ?, ?, ?)";
-        String query2= "UPDATE book SET borrow_status = TRUE WHERE isbn = ?";
+        String query2 = "UPDATE book SET borrow_status = TRUE WHERE isbn = ?";
         try (Connection connection = DatabaseConnect.getCon()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, borrowBook.getUserId());
@@ -300,5 +300,36 @@ public class BookDAO implements BookDAOInterface {
     @Override
     public List<BorrowBook.Status> getBorrowedStatus() throws SQLException {
         return Arrays.asList(BorrowBook.Status.values());
+    }
+
+    @Override
+    public void deleteBorrowBook(int id) throws SQLException {
+        try (Connection connection = DatabaseConnect.getCon()) {
+            CallableStatement callableStatement = connection.prepareCall("{call delete_borrow(?)}");
+            callableStatement.setInt(1, id);
+            callableStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateBorrow(BorrowBook borrowBook) throws SQLException {
+        String query = "UPDATE borrow_book SET user_id =?, book_isbn = ?, status = ?, borrow_date =?, return_date = ? WHERE id = ?";
+
+        try (Connection connection = DatabaseConnect.getCon()) {
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, borrowBook.getUserId());
+            preparedStatement.setString(2, borrowBook.getBookIsbn());
+            preparedStatement.setString(3, borrowBook.getStatus());
+            preparedStatement.setDate(4, borrowBook.getBorrowDate());
+            preparedStatement.setDate(5, borrowBook.getReturnDate());
+            preparedStatement.setInt(6, borrowBook.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
