@@ -1,4 +1,4 @@
-package org.example.bookmanagement.service;
+package org.example.bookmanagement.service.librarianDAO;
 
 import org.example.bookmanagement.model.Librarian;
 

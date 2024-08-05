@@ -8,11 +8,7 @@
 <div class="container mt-4">
     <h2>Edit Librarian</h2>
 
-    <% if (request.getParameter("message") != null) { %>
-    <div class="alert alert-success" role="alert">
-        <%= request.getParameter("message") %>
-    </div>
-    <% } %>
+
 
     <form action="${pageContext.request.contextPath}/edit-librarian" method="post">
 
