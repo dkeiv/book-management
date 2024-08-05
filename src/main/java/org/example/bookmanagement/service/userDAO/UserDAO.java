@@ -25,7 +25,7 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public void insertUser(User user) throws SQLException {
-        String query = "INSERT INTO user (name, address, course, birthday, active) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO user (name, course, birthday, active) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = DatabaseConnect.getCon()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, user.getName());

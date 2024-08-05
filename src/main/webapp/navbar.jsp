@@ -35,46 +35,18 @@
 </style>
 <body>
 <div class="app__container">
-    <div class="container">
-        <div class="app-content">
-            <div class="col1">
-                <nav class="category">
-                    <h3 class="category-heading">
-                        <i class="category-heading-icon fa-solid fa-list"></i>
-                        Danh Mục
-                    </h3>
-
-                    <ul class="category-list">
-                        <li class="category-item category-item-active">
-                            <a href="#" class="category-item__link">Áo Khoác Nữ</a>
-                        </li>
-                        <li class="category-item">
-                            <a href="#" class="category-item__link">Áo Khoác Nam</a>
-                        </li>
-                        <li class="category-item">
-                            <a href="#" class="category-item__link">Áo Phông Nam Nữ</a>
-                        </li>
-                        <li class="category-item">
-                            <a href="#" class="category-item__link">Áo Polo</a>
-                        </li>
-                        <li class="category-item">
-                            <a href="#" class="category-item__link">Áo Hoodie</a>
-                        </li>
-                        <li class="category-item">
-                            <a href="#" class="category-item__link">Quần jean</a>
-                        </li>
-                        <li class="category-item">
-                            <a href="#" class="category-item__link">Quần bò</a>
-                        </li>
-                        <li class="category-item">
-                            <a href="#" class="category-item__link">Phụ kiện</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-            <div class="col2 ">
-                <span>aaaaaaaa</span>
+    <div id="navbar">
+        <div class="container nav-height">
+            <div class="nav-container">
+                <div class="nav-home">
+                    <i class="fa-solid fa-house"></i>
+                </div>
+                <a href="#">HOT</a>
+                <a href="#">THEO DÕI</a>
+                <a href="#">LỊCH SỬ</a>
+                <a href="#">THỂ LOẠI</a>
+                <a href="#">XẾP HẠNG</a>
+                <a href="#">FANPAGE</a>
             </div>
         </div>
     </div>
