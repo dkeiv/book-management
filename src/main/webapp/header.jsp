@@ -91,22 +91,22 @@
                         <span class="header__cart-heading ">Quản lý tài khoản</span>
                         <ul class="header__cart-list-item">
                             <li class="header__cart-item">
-                                <h2 >Cài đặt</h2>
+                                <h4 >Cài đặt</h4>
                             </li>
                             <li class="header__cart-item">
-                                <h2 >Cài đặt</h2>
+                                <h4 >Cài đặt</h4>
                             </li>
                             <li class="header__cart-item">
-                                <h2 >Cài đặt</h2>
+                                <h4 >Cài đặt</h4>
                             </li>
                             <li class="header__cart-item">
-                                <h2 >Cài đặt</h2>
+                                <h4 >Cài đặt</h4>
                             </li>
                             <li class="header__cart-item">
-                                <h2 >Cài đặt</h2>
+                                <h4 >Cài đặt</h4>
                             </li>
                         </ul>
-                        <a href="#" class="btn btn--primary">Đăng xuất</a>
+                        <a href="#" class="btn btn-primary btn--primary">Đăng xuất</a>
                     </div>
                 </div>
             </div>
