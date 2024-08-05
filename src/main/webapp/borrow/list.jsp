@@ -1,6 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../header.jsp"%>
 <%@ include file="../navbar.jsp"%>
+<style>
+    .table {
+        font-size: 13px;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+</style>
 <table class="table table-striped table-hover">
     <thead>
     <tr>

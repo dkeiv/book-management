@@ -29,7 +29,7 @@ public class CreateFormPost extends HttpServlet {
             bookDAO.insertBook(book);
             bookDAO.addBookCategory(book, categoryIdList);
 
-            response.sendRedirect("/");
+            response.sendRedirect("bool/list.jsp");
         } catch (SQLException e) {
             request.setAttribute("exception", e);
             request.getRequestDispatcher("error.jsp").forward(request, response);
