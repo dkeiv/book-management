@@ -1,4 +1,4 @@
-package org.example.bookmanagement.service;
+package org.example.bookmanagement.service.librarianDAO;
 
 import org.example.bookmanagement.dbConnect.DatabaseConnect;
 import org.example.bookmanagement.model.Librarian;
@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LibrarianDAO implements ILibrarianDAO {
@@ -115,14 +114,14 @@ public class LibrarianDAO implements ILibrarianDAO {
         String query = "SELECT * FROM librarian where name = ?";
         try (Connection connection = DatabaseConnect.getCon();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, "name");
+            preparedStatement.setString(1, name);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nameLibrarian = rs.getString("name");
                 String email = rs.getString("email");
                 String password = rs.getString("password");
-                librarianList.add(new Librarian(id,nameLibrarian,email,password));
+                librarianList.add(new Librarian(id, nameLibrarian, email, password));
 
             }
         } catch (SQLException e) {

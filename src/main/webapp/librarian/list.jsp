@@ -5,24 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Librarian List</title>
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script>
-        function confirmDelete(url) {
-            if (confirm("Are you sure you want to delete this librarian?")) {
-                window.location.href = url;
-            }
-        }
-    </script>
 </head>
 <body>
 <div class="container mt-4">
-    <center>
-        <h1>User Management</h1>
-        <h2>
-            <a href="/users?action=create">Add New User</a>
-        </h2>
-    </center>
+    <form action="${pageContext.request.contextPath}/search-librarian" method="get">
+        <input type="text" name="name" placeholder="name">
+        <input type="submit" value="Search">
     </form>
+
 
     <table class="table table-striped">
         <thead>
@@ -42,7 +34,7 @@
                 <td>${librarian.email}</td>
                 <td>${librarian.password}</td>
                 <td>
-                    <a href="javascript:void(0);" onclick="confirmDelete('${pageContext.request.contextPath}/delete-librarian?id=${librarian.id}')" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="${pageContext.request.contextPath}/delete-librarian-form?id=${librarian.id}" class="btn btn-danger btn-sm ml-2">Xoa</a>
                     <a href="${pageContext.request.contextPath}/edit-librarian-form?id=${librarian.id}" class="btn btn-warning btn-sm ml-2">Edit</a>
                 </td>
             </tr>
