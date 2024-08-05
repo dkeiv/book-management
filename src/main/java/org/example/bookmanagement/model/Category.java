@@ -4,19 +4,32 @@ public class Category {
     private int id;
     private String name;
 
-    public Category() {}
-
-    public Category( String name) {
+    public Category(String name) {
         this.name = name;
     }
 
+    public Category() {
+    }
+
     public Category(int id, String name) {
-        this(name);
         this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

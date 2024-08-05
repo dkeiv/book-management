@@ -18,17 +18,14 @@
 </p>
 <form method="post" action="${pageContext.request.contextPath}/create-user">
     <fieldset>
-        <legend>Customer information</legend>
+        <legend>User information</legend>
         <table>
 
             <tr>
                 <td>Name: </td>
                 <td><input type="text" name="user-name" id="name"></td>
             </tr>
-            <tr>
-                <td>Address: </td>
-                <td><input type="text" name="address" id="address"></td>
-            </tr>
+
             <tr>
                 <td>Course: </td>
                 <td><input type="text" name="course" id="course"></td>

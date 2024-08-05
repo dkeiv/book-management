@@ -1,6 +1,6 @@
 package org.example.bookmanagement.controller.librarian;
 
-//import org.example.bookmanagement.model.Librarian;
+import org.example.bookmanagement.model.Librarian;
 import org.example.bookmanagement.service.ILibrarianDAO;
 import org.example.bookmanagement.service.LibrarianDAO;
 
@@ -15,12 +15,12 @@ import java.util.List;
 
 @WebServlet(value ="/list-librarian")
 public class GetListForm extends HttpServlet {
-//    private static final ILibrarianDAO librarianDAO = new LibrarianDAO();
-//
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        List<Librarian> librarianList = librarianDAO.ShowAllLibrarian();
-//        req.setAttribute("librarianList", librarianList);
-//        RequestDispatcher dispatcher = req.getRequestDispatcher("librarian/list.jsp");
-//        dispatcher.forward(req, resp);
-//    }
+    private static final ILibrarianDAO librarianDAO = new LibrarianDAO();
+
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Librarian> librarianList = librarianDAO.ShowAllLibrarian();
+        req.setAttribute("librarianList", librarianList);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("librarian/list.jsp");
+        dispatcher.forward(req, resp);
+    }
 }
