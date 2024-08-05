@@ -1,10 +1,8 @@
 package org.example.bookmanagement.controller.user;
 
 import org.example.bookmanagement.model.User;
-import org.example.bookmanagement.service.categoryDAO.CategoryDAO;
-import org.example.bookmanagement.service.categoryDAO.ICategoryDAO;
-import userDAO.IUserDAO;
-import userDAO.UserDAO;
+import org.example.bookmanagement.service.userDAO.IUserDAO;
+import org.example.bookmanagement.service.userDAO.UserDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,15 +19,15 @@ public class EditFormPost extends HttpServlet {
     IUserDAO userDAO = new UserDAO();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userName = req.getParameter("user-name");
-        String address = req.getParameter("address");
+        int id = Integer.parseInt(req.getParameter("id"));
+        String userName = req.getParameter("name");
         String course = req.getParameter("course");
         Date birthday = Date.valueOf(req.getParameter("birthday"));
         boolean active = Boolean.parseBoolean(req.getParameter("active"));
-        User user = new User( userName, address, course, birthday, active);
+        User user = new User( userName, course, birthday, active);
 
         try {
-            userDAO.updateUser(user);
+            userDAO.updateUser(id, user);
 
             req.setAttribute("message", "Success");
 
