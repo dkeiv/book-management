@@ -9,9 +9,12 @@ CREATE TABLE IF NOT EXISTS book
     description   NVARCHAR(150),
     publisher     NVARCHAR(50),
     img_url       NVARCHAR(255),
+<<<<<<< HEAD:sql/buidle_schema.sql
     `condition`   NVARCHAR(10),
+=======
+>>>>>>> 08a47b2fdeac24f34c95fd1f476d755219c1d83d:slq/buidle_schema.sql
     borrow_status BOOLEAN DEFAULT FALSE
-    );
+);
 
 CREATE TABLE IF NOT EXISTS category
 (
@@ -24,8 +27,13 @@ CREATE TABLE IF NOT EXISTS book_category
     category_id INT,
     book_isbn     NVARCHAR(50),
     FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE,
+<<<<<<< HEAD:sql/buidle_schema.sql
     FOREIGN KEY (book_isbn) REFERENCES book (isbn) ON DELETE CASCADE
     );
+=======
+    FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE
+);
+>>>>>>> 08a47b2fdeac24f34c95fd1f476d755219c1d83d:slq/buidle_schema.sql
 
 CREATE TABLE IF NOT EXISTS librarian
 (
@@ -33,7 +41,7 @@ CREATE TABLE IF NOT EXISTS librarian
     name     NVARCHAR(50)  NOT NULL,
     email    NVARCHAR(50)  NOT NULL,
     password NVARCHAR(255) NOT NULL
-    );
+);
 
 CREATE TABLE IF NOT EXISTS user
 (
@@ -42,7 +50,11 @@ CREATE TABLE IF NOT EXISTS user
     course    NVARCHAR(50) NOT NULL,
     birthday DATE,
     active   BOOLEAN DEFAULT TRUE
+<<<<<<< HEAD:sql/buidle_schema.sql
     );
+=======
+);
+>>>>>>> 08a47b2fdeac24f34c95fd1f476d755219c1d83d:slq/buidle_schema.sql
 
 CREATE TABLE IF NOT EXISTS borrow_detail
 (
@@ -55,7 +67,7 @@ CREATE TABLE IF NOT EXISTS borrow_detail
 
     FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
     FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE
-    );
+);
 
 CREATE TABLE publisher
 (
