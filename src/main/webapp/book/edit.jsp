@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="../header.jsp"%>
+<%@include file="../header.jsp" %>
 <form method="POST" action="${pageContext.request.contextPath}/edit-book">
     <input type="hidden" readonly name="bookId" value="${book.id}">
     <table>
@@ -75,15 +75,15 @@
         </tr>
         <tr>
             <td>
-                <label for="borrowedStatus">Available</label>
+                <label for="borrowedStatus">Status</label>
             </td>
             <td>
                 <select id="borrowedStatus" name="borrowedStatus" required>
-                    <option value="true" <c:if test="${book.borrowed== true} ">selected
-                    </c:if>> Available
+                    <option value="true" <c:if test="${book.borrowed== true}">selected
+                    </c:if>> Borrowed
                     </option>
-                    <option value="false" <c:if test="${book.borrowed== false} ">selected
-                    </c:if>> Not Available
+                    <option value="false" <c:if test="${book.borrowed == false}">selected
+                    </c:if>> Available
                     </option>
                 </select>
             </td>

@@ -1,7 +1,7 @@
-package org.example.bookmanagement.service;
+package org.example.bookmanagement.service.bookDAO;
 
 import org.example.bookmanagement.model.Book;
-import org.example.bookmanagement.model.BorrowDetail;
+import org.example.bookmanagement.model.BorrowBook;
 import org.example.bookmanagement.model.Category;
 
 import java.sql.SQLException;
@@ -10,6 +10,8 @@ import java.util.List;
 public interface BookDAOInterface {
 
     Book getBookById(int id) throws SQLException;
+
+    Book getBookByIsbn(String isbn) throws SQLException;
 
     void insertBook(Book book) throws SQLException;
 
@@ -23,14 +25,17 @@ public interface BookDAOInterface {
 
     List<Category> getAllCategory() throws SQLException;
 
-    void borrowBook(BorrowDetail detail) throws SQLException;
-
-    BorrowDetail getBorrowDetail(int id) throws SQLException;
-
     void addBookCategory(Book book, String[] categoryIdList) throws SQLException;
 
     List<String> getCategoryByBookId(int id) throws SQLException;
-//    List<String> getAllCategory();
 
 //    List<Book> searchBook(String name, String price, String category, String color);
+
+    List<BorrowBook> getAllBorrowBook() throws SQLException;
+
+    void insertBorrowBook(BorrowBook book) throws SQLException;
+
+    BorrowBook getBorrowBookById(int id) throws SQLException;
+
+    List<BorrowBook.Status> getBorrowedStatus() throws SQLException;
 }
