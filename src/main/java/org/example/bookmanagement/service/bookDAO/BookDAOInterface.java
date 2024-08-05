@@ -19,6 +19,8 @@ public interface BookDAOInterface {
 
     boolean deleteBook(int id) throws SQLException;
 
+    List<Book> getBookByName(String name) throws SQLException;
+
     List<Book> getAllBook();
 
     List<String> getAllPublisher() throws SQLException;
