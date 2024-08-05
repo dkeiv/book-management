@@ -1,4 +1,4 @@
-package userDAO;
+package org.example.bookmanagement.service.userDAO;
 
 import org.example.bookmanagement.dbConnect.DatabaseConnect;
 import org.example.bookmanagement.model.User;
@@ -25,14 +25,13 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public void insertUser(User user) throws SQLException {
-        String query = "INSERT INTO user (name, address, course, birthday, active) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO user (name, course, birthday, active) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = DatabaseConnect.getCon()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getAddress());
-            preparedStatement.setString(3, user.getCourse());
-            preparedStatement.setDate(4, user.getBirthday());
-            preparedStatement.setBoolean(5, user.isActive());
+            preparedStatement.setString(2, user.getCourse());
+            preparedStatement.setDate(3, user.getBirthday());
+            preparedStatement.setBoolean(4, user.isActive());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -40,10 +39,14 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public boolean updateUser(User user) throws SQLException {
-        String query = "UPDATE user SET name =?, address =?, course =?, birthday =?, active =? WHERE id =?";
+    public boolean updateUser(int id, User user) throws SQLException {
+        String query = "UPDATE user SET name =?, course =?, birthday =?, active =? WHERE id =?";
         try (Connection connection = DatabaseConnect.getCon(); PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, user.getId());
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getCourse());
+            statement.setDate(3, user.getBirthday());
+            statement.setBoolean(4, user.isActive());
+            statement.setInt(5, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,12 +93,11 @@ public class UserDAO implements IUserDAO {
 
     private User makeUserFromResultSet(ResultSet resultSet) throws SQLException {
         int userId = resultSet.getInt("id");
-        String userName = resultSet.getString("user-name");
-        String address = resultSet.getString("address");
+        String userName = resultSet.getString("name");
         String course = resultSet.getString("course");
         Date birthday = resultSet.getDate("birthday");
         boolean active = resultSet.getBoolean("active");
-        return new User(userId, userName, address, course, birthday, active);
+        return new User(userId, userName, course, birthday, active);
     }
 }
 

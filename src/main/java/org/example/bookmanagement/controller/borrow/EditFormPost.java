@@ -1,16 +1,14 @@
-package org.example.bookmanagement.controller.librarian;
+package org.example.bookmanagement.controller.borrow;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet (value = "/create-librarian")
-public class PostCreateForm extends HttpServlet {
+@WebServlet (value = "/edit-borrow")
+public class EditFormPost extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
     }
 }

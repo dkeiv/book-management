@@ -18,14 +18,13 @@ public class UpdateFormPost extends HttpServlet {
     ICategoryDAO categoryDAO = new CategoryDAO();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         int id = Integer.parseInt(req.getParameter("categoryId"));
         String name = req.getParameter("name");
         Category category = new Category( name);
 
 
         try {
-            categoryDAO.updateCategory(category);
+            categoryDAO.updateCategory(id, category);
 
             req.setAttribute("message", "Success");
 

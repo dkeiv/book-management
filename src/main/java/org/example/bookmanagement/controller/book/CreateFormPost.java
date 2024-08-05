@@ -1,15 +1,13 @@
 package org.example.bookmanagement.controller.book;
 
-import org.example.bookmanagement.dbConnect.DatabaseConnect;
 import org.example.bookmanagement.model.Book;
-import org.example.bookmanagement.service.BookDAO;
-import org.example.bookmanagement.service.BookDAOInterface;
+import org.example.bookmanagement.service.bookDAO.BookDAO;
+import org.example.bookmanagement.service.bookDAO.BookDAOInterface;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet(value = "/create-book")
