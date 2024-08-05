@@ -5,7 +5,6 @@ import java.sql.Date;
 public class User {
     private int id;
     private String name;
-    private String address;
     private String course;
     private Date birthday;
     private boolean active = true;
@@ -15,16 +14,15 @@ public class User {
     public User() {
     }
 
-    public User(String name, String address, String course, Date birthday, boolean active) {
+    public User(String name, String course, Date birthday, boolean active) {
         this.name = name;
-        this.address = address;
         this.course = course;
         this.birthday = birthday;
         this.active = active;
     }
 
-    public User(int id, String name, String address, String course, Date birthday, boolean active) {
-        this(name, address, course, birthday, active);
+    public User(int id, String name, String course, Date birthday, boolean active) {
+        this(name, course, birthday, active);
         this.id = id;
     }
 
@@ -34,14 +32,6 @@ public class User {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public Date getBirthday() {
