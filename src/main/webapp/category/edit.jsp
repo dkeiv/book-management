@@ -23,11 +23,13 @@
     <fieldset>
         <legend>Category information</legend>
         <table>
-            <input type="text" name="categoryId" id="categoryId" value="${categoryId}">
+            <tr>
+                <td>Id: </td>
+                <td><input name="id" value="${categoryId}" readonly></td>
+            </tr>
             <tr>
                 <td>Name:</td>
-                <td><input type="text" name="name" id="name" value="${requestScope["category"].getName()}" required>
-                </td>
+                <td><input name="name" value="${requestScope["category"].getName()}" required></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Update category"></td>

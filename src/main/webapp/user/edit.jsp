@@ -25,23 +25,22 @@
         <table>
             <tr>
                 <td>Id: </td>
-                <td><input name="id" value="${userId}" readonly></td>
+                <td><input name="id" value="${id}" readonly></td>
             </tr>
             <tr>
                 <td>Name: </td>
-                <td>${requestScope["user"].getName}</td>
+                <td><input name="name" value="${requestScope["user"].getName()}" ></td>
+
             </tr>
+
             <tr>
-                <td>Address: </td>
-                <td>${requestScope["user"].getAddress}</td>
-            </tr>
-            <tr>
-                <td>Course: </td>
-                <td>${requestScope["user"].getCourse}</td>
+                <td>Course: </td>\
+                <td><input name="course" value="${requestScope["user"].getCourse()}" ></td>
+
             </tr>
             <tr>
                 <td>Birthday: </td>
-                <td>${requestScope["user"].getBirthdayd}</td>
+                <td><input name="birthday" value="${requestScope["user"].getBirthday()}" ></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Update User"></td>

@@ -1,9 +1,8 @@
 package org.example.bookmanagement.controller.user;
 
 import org.example.bookmanagement.model.User;
-import org.example.bookmanagement.service.categoryDAO.CategoryDAO;
-import userDAO.IUserDAO;
-import userDAO.UserDAO;
+import org.example.bookmanagement.service.userDAO.IUserDAO;
+import org.example.bookmanagement.service.userDAO.UserDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,20 +19,21 @@ public class DeleteFormPost extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
-        String userName = req.getParameter("user-name");
-        String address = req.getParameter("address");
+        String userName = req.getParameter("name");
         String course = req.getParameter("course");
         Date birthday = Date.valueOf(req.getParameter("birthday"));
         boolean active = Boolean.parseBoolean(req.getParameter("active"));
-        User user = new User(id, userName, address, course, birthday, active);
+        User user = new User(id, userName, course, birthday, active);
+        System.out.println(user);
         try {
             boolean isDeleted = userDAO.deleteUser(user);
             if (isDeleted) {
                 req.setAttribute("message", "Deleted Successfully");
+                req.getRequestDispatcher("success.jsp").forward(req, resp);
             } else {
                 req.setAttribute("message", "Deletion Failed");
+                req.getRequestDispatcher("success.jsp").forward(req, resp);
             }
-            req.getRequestDispatcher("result.jsp").forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

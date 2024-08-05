@@ -1,9 +1,8 @@
 package org.example.bookmanagement.controller.user;
 
 import org.example.bookmanagement.model.User;
-import org.example.bookmanagement.service.categoryDAO.CategoryDAO;
-import userDAO.IUserDAO;
-import userDAO.UserDAO;
+import org.example.bookmanagement.service.userDAO.IUserDAO;
+import org.example.bookmanagement.service.userDAO.UserDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
