@@ -22,7 +22,7 @@ public class DeleteFormPost extends HttpServlet {
             String name = req.getParameter("name");
             Category category = new Category(id, name);
             categoryDAO.deleteCategory(category);
-            req.setAttribute("message", "Deleted Successfully");
+            req.setAttribute("message", "Created Successfully");
             req.getRequestDispatcher("success.jsp").forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);

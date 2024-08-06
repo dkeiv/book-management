@@ -30,6 +30,8 @@
                 <a href="${pageContext.request.contextPath}/list-user">User</a>
                 <a href="${pageContext.request.contextPath}/list-category">Category</a>
                 <a href="${pageContext.request.contextPath}/list-librarian">Librarian</a>
+                <a href="${pageContext.request.contextPath}/list-borrow">Borrow</a>
+
             </div>
         </div>
     </div>

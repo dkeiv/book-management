@@ -22,7 +22,10 @@
 </style>
 <body>
 <div class="container mt-4">
+    <center>
+        <h1>Librarian Management</h1>
 
+    </center>
     <form action="${pageContext.request.contextPath}/search-librarian" method="get">
         <input type="text" name="name" placeholder="name">
         <input type="submit" value="Search">

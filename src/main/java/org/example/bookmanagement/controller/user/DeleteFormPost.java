@@ -26,14 +26,14 @@ public class DeleteFormPost extends HttpServlet {
         User user = new User(id, userName, course, birthday, active);
         System.out.println(user);
         try {
-            boolean isDeleted = userDAO.deleteUser(user);
-            if (isDeleted) {
+            if (userDAO.deleteUser(user)) {
                 req.setAttribute("message", "Deleted Successfully");
-                req.getRequestDispatcher("success.jsp").forward(req, resp);
             } else {
                 req.setAttribute("message", "Deletion Failed");
-                req.getRequestDispatcher("success.jsp").forward(req, resp);
             }
+
+            req.getRequestDispatcher("success.jsp").forward(req, resp);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
