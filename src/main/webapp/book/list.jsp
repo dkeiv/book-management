@@ -8,13 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Librarian List</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script>
-        function confirmDelete(url) {
-            if (confirm("Are you sure you want to delete this librarian?")) {
-                window.location.href = url;
-            }
-        }
-    </script>
 </head>
 <style>
     .table {
@@ -61,8 +54,8 @@
                 <td><c:out value="${book.condition}"/></td>
                 <td><c:out value="${book.borrowed}"/></td>
                 <td>
-                    <a href="javascript:void(0);" onclick="confirmDelete('${pageContext.request.contextPath}/edit-book-form?bookId=${book.id}')" class="btn btn-danger btn-sm">Delete</a>
-                    <a href="${pageContext.request.contextPath}/edit-book-form?id=${book.id}" class="btn btn-warning btn-sm ml-2">Edit</a>
+                    <a href="javascript:void(0);" onclick="confirmDelete('${pageContext.request.contextPath}/delete-book-form?bookId=${book.id}')" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="${pageContext.request.contextPath}/edit-book-form?bookId=${book.id}" class="btn btn-warning btn-sm ml-2">Edit</a>
                 </td>
             </tr>
         </c:forEach>

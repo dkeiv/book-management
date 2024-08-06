@@ -1,46 +1,50 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../header.jsp"%>
+<%@ include file="../navbar.jsp"%>
+
 
 <html>
 <head>
-    <title>Deleting category</title>
+    <title>Delete Librarian</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Delete category</h1>
-<p>
-    <a href="list.jsp">Back to customer list</a>
-</p>
-<form method="post" action="${pageContext.request.contextPath}/delete-user">
-    <h3>Are you sure?</h3>
-    <fieldset>
-        <legend>User information</legend>
-        <table>
-            <tr>
-                <td>Id: </td>
-                <td><input name="id" value="${id}" readonly></td>
-            </tr>
-            <tr>
-                <td>Name: </td>
-                <td><input name="name" value="${requestScope["user"].getName()}" readonly></td>
-            </tr>
+<div class="container mt-4">
+    <h2>Delete Librarian</h2>
 
-            <tr>
-                <td>Course: </td>\
-                <td><input name="course" value="${requestScope["user"].getCourse()}" readonly></td>
+    <% if (request.getParameter("message") != null) { %>
+    <div class="alert alert-success" role="alert">
+        <%= request.getParameter("message") %>
+    </div>
+    <% } %>
 
-            </tr>
-            <tr>
-                <td>Birthday: </td>
-                <td><input name="birthday" value="${requestScope["user"].getBirthday()}" readonly></td>
-            </tr>
-            <tr>
-                <td>Active: </td>
-                <td><input name="active" value="${requestScope["user"].isActive()}" readonly></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Delete User"></td>
-                <td><a href="list.jsp">Back to User list</a></td>
-            </tr>
-        </table>
-    </fieldset>
+    <form method="post" action="${pageContext.request.contextPath}/delete-user">
+
+        <input type="hidden" name="id" value="${id}" />
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="form-control" name="name" value="${requestScope["user"].getName()}" >
+        </div>
+
+        <div class="form-group">
+            <label for="course">Course:</label>
+            <input type="text" class="form-control" id="course" name="course" value="${requestScope["user"].getCourse()}" >
+        </div>
+
+        <div class="form-group">
+            <label for="birthday">Birthday:</label>
+            <input id="birthday" type="date" class="form-control" name="birthday" value="${requestScope["user"].getBirthday()}" >
+        </div>
+
+        <button type="submit" class="btn btn-primary">Delete User</button>
+        <a href="${pageContext.request.contextPath}/list-user" class="btn btn-secondary">Back to User List</a>
+    </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

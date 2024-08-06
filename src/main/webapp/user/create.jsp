@@ -1,11 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../header.jsp"%>
+<%@ include file="../navbar.jsp"%>
 <html>
 <head>
-    <style>
-        .message{
-            color:green;
-        }
-    </style>
+    <title>Edit User</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <p>
@@ -13,35 +12,37 @@
         <span class="message">${requestScope["message"]}</span>
     </c:if>
 </p>
-<p>
-    <a href="user">Back to user list</a>
-</p>
-<form method="post" action="${pageContext.request.contextPath}/create-user">
-    <fieldset>
-        <legend>User information</legend>
-        <table>
+<div class="container mt-4">
+    <h2>Edit User</h2>
 
-            <tr>
-                <td>Name: </td>
-                <td><input type="text" name="user-name" id="name"></td>
-            </tr>
+    <% if (request.getParameter("message") != null) { %>
+    <div class="alert alert-success" role="alert">
+        <%= request.getParameter("message") %>
+    </div>
+    <% } %>
 
-            <tr>
-                <td>Course: </td>
-                <td><input type="text" name="course" id="course"></td>
-            </tr>
-            <tr>
-                <td>Birthday: </td>
-                <td><input type="date" name="birthday" id="birthday"></td>
-            </tr>
+    <form method="post" action="${pageContext.request.contextPath}/edit-user">
 
+        <input type="hidden" name="id" value="${id}" />
 
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Create user"></td>
-            </tr>
-        </table>
-    </fieldset>
-</form>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="form-control" name="name" value="${requestScope["user"].getName()}" >
+        </div>
+
+        <div class="form-group">
+            <label for="course">Course:</label>
+            <input type="text" class="form-control" id="course" name="course" value="${requestScope["user"].getCourse()}" >
+        </div>
+
+        <div class="form-group">
+            <label for="birthday">Birthday:</label>
+            <input id="birthday" type="date" class="form-control" name="birthday" value="${requestScope["user"].getBirthday()}" >
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update User</button>
+        <a href="${pageContext.request.contextPath}/list-user" class="btn btn-secondary">Back to User List</a>
+    </form>
+</div>
 </body>
 </html>

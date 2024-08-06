@@ -28,7 +28,6 @@ public class UpdateFormGet extends HttpServlet {
             req.setAttribute("categoryId", id);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("category/edit.jsp");
             requestDispatcher.forward(req, resp);
-            requestDispatcher.forward(req, resp);
         } catch (ServletException | IOException | SQLException e) {
             e.printStackTrace();
         }
