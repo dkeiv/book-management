@@ -38,7 +38,6 @@
             <th>#</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Password</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -51,7 +50,6 @@
                 <td><c:out value="${count}"/></td>
                 <td>${librarian.name}</td>
                 <td>${librarian.email}</td>
-                <td>${librarian.password}</td>
                 <td>
                     <a href="${pageContext.request.contextPath}/delete-librarian-form?id=${librarian.id}" class="btn btn-danger btn-sm ml-2">Delete</a>
                     <a href="${pageContext.request.contextPath}/edit-librarian-form?id=${librarian.id}" class="btn btn-warning btn-sm ml-2">Edit</a>
