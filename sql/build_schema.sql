@@ -47,11 +47,11 @@ CREATE TABLE IF NOT EXISTS user
 CREATE TABLE IF NOT EXISTS borrow_book
 (
     id          INT AUTO_INCREMENT PRIMARY KEY,
-    user_id     INT NOT NULL,
+    user_id     INT,
     book_isbn   NVARCHAR(50),
     status      NVARCHAR(10),
-    borrow_date DATE,
-    return_date DATE,
+    borrow_date DATE NOT NULL,
+    return_date DATE NOT NULL,
 
     FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
     FOREIGN KEY (book_isbn) REFERENCES book (isbn) ON DELETE CASCADE
