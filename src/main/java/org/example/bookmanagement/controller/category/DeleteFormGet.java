@@ -1,5 +1,6 @@
 package org.example.bookmanagement.controller.category;
 
+import org.example.bookmanagement.model.Category;
 import org.example.bookmanagement.service.categoryDAO.CategoryDAO;
 import org.example.bookmanagement.service.categoryDAO.ICategoryDAO;
 
@@ -19,7 +20,8 @@ public class DeleteFormGet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             int id = Integer.parseInt(req.getParameter("categoryId"));
-            categoryDAO.getCategoryById(id);
+            Category category = categoryDAO.getCategoryById(id);
+            req.setAttribute("category", category);
             req.setAttribute("categoryId", id);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("category/delete.jsp");
             requestDispatcher.forward(req, resp);

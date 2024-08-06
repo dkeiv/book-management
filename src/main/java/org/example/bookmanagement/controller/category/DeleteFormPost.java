@@ -16,10 +16,11 @@ public class DeleteFormPost extends HttpServlet {
     CategoryDAO categoryDAO = new CategoryDAO();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("categoryId"));
-        String name = req.getParameter("name");
-        Category category = new Category(id, name);
+
         try {
+            int id = Integer.parseInt(req.getParameter("id"));
+            String name = req.getParameter("name");
+            Category category = new Category(id, name);
             categoryDAO.deleteCategory(category);
             req.setAttribute("message", "Deleted Successfully");
             req.getRequestDispatcher("success.jsp").forward(req, resp);

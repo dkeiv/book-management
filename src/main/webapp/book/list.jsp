@@ -54,7 +54,7 @@
                 <td><c:out value="${book.condition}"/></td>
                 <td><c:out value="${book.borrowed}"/></td>
                 <td>
-                    <a href="javascript:void(0);" onclick="confirmDelete('${pageContext.request.contextPath}/edit-book-form?bookId=${book.id}')" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="javascript:void(0);" onclick="confirmDelete('${pageContext.request.contextPath}/delete-book-form?bookId=${book.id}')" class="btn btn-danger btn-sm">Delete</a>
                     <a href="${pageContext.request.contextPath}/edit-book-form?bookId=${book.id}" class="btn btn-warning btn-sm ml-2">Edit</a>
                 </td>
             </tr>
