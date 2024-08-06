@@ -23,11 +23,14 @@
 <body>
 <div class="container mt-4">
 
-    <form action="${pageContext.request.contextPath}/search-librarian" method="get">
-        <input type="text" name="name" placeholder="name">
-        <input type="submit" value="Search">
+    <form action="${pageContext.request.contextPath}/search-librarian" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="name" class="form-control" placeholder="Search by name">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
     </form>
-
 
     <table class="table table-striped">
         <thead>
@@ -58,7 +61,7 @@
         </tbody>
     </table>
 
-    <a href="${pageContext.request.contextPath}/create-librarian-form" class="btn btn-primary">Add New</a>
+    <a href="${pageContext.request.contextPath}/create-librarian-form" class="btn btn-primary btn-lg">Add New</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

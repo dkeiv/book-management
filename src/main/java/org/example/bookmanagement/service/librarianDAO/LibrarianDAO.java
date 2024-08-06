@@ -111,10 +111,10 @@ public class LibrarianDAO implements ILibrarianDAO {
     @Override
     public List<Librarian> searchByName(String name) {
         List<Librarian> librarianList = new ArrayList<>();
-        String query = "SELECT * FROM librarian where name = ?";
+        String query = "SELECT * FROM librarian where name LIKE ?";
         try (Connection connection = DatabaseConnect.getCon();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, name);
+            preparedStatement.setString(1, "%" + name + "%");
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
