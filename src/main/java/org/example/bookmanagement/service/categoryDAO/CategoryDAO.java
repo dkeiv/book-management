@@ -51,9 +51,9 @@ public class CategoryDAO implements ICategoryDAO{
         return true;
     }
 
-    public boolean setIdCategoryToNull() throws SQLException {
-        String query = "UPDATE book SET email = NULL WHERE id = 1";
-    }
+//    public boolean setIdCategoryToNull() throws SQLException {
+//        String query = "UPDATE book SET email = NULL WHERE id = 1";
+//    }
 
     @Override
     public Category getCategoryById(int id) throws SQLException {
