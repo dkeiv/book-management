@@ -5,6 +5,7 @@ import org.example.bookmanagement.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class UserDAO implements IUserDAO {
@@ -64,8 +65,6 @@ public class UserDAO implements IUserDAO {
                preparedStatement.setInt(1, user.getId());
 
                return preparedStatement.executeUpdate() > 0;
-           } else {
-               return false;
            }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -83,12 +82,34 @@ public class UserDAO implements IUserDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                userList.add(makeUserFromResultSet(resultSet));
+                User user = makeUserFromResultSet(resultSet);
+                if (user.isActive()) {
+                    userList.add(user);
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return userList;
+    }
+
+    @Override
+    public List<User> searchByName(String name) throws SQLException {
+        String query = "select * from book where name like ?;";
+
+        try (Connection connection = DatabaseConnect.getCon()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, "%" + name + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<User> userList = new ArrayList<>();
+            while (resultSet.next()) {
+                User user = makeUserFromResultSet(resultSet);
+                if (user.isActive()) {
+                    userList.add(user);
+                }
+            }
+            return userList;
+        }
     }
 
     private User makeUserFromResultSet(ResultSet resultSet) throws SQLException {

@@ -5,12 +5,15 @@
 
 <html>
 <head>
-    <title>Delete Librarian</title>
+    <title>Delete User</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<c:if test="${message != null}" >
+    <p>${message}</p>
+</c:if>
 <div class="container mt-4">
-    <h2>Delete Librarian</h2>
+    <h2>Delete User</h2>
 
     <% if (request.getParameter("message") != null) { %>
     <div class="alert alert-success" role="alert">
@@ -20,7 +23,7 @@
 
     <form method="post" action="${pageContext.request.contextPath}/delete-user">
 
-        <input type="hidden" name="id" value="${id}" />
+        <input type="hidden" name="id" value="${user.id}" />
 
         <div class="form-group">
             <label for="name">Name:</label>
@@ -35,6 +38,11 @@
         <div class="form-group">
             <label for="birthday">Birthday:</label>
             <input id="birthday" type="date" class="form-control" name="birthday" value="${requestScope["user"].getBirthday()}" >
+        </div>
+
+        <div class="form-group">
+            <label for="active">Active:</label>
+            <input id="active" type="text" class="form-control" name="active" value="${requestScope["user"].isActive()}" readonly>
         </div>
 
         <button type="submit" class="btn btn-primary">Delete User</button>

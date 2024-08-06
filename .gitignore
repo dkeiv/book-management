@@ -43,10 +43,6 @@ bin/
 .DS_Store
 
 ##
-<<<<<<< HEAD
-.env
+*.env
 .gitignore
 test*.*
-=======
-.env
->>>>>>> 08a47b2fdeac24f34c95fd1f476d755219c1d83d

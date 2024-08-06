@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container mt-4">
-    <h2>Edit Librarian</h2>
+    <h2>Edit Category</h2>
 
     <% if (request.getParameter("message") != null) { %>
     <div class="alert alert-success" role="alert">

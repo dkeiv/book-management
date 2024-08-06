@@ -15,15 +15,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Librarian List</title>
+    <title>Category List</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script>
-        function confirmDelete(url) {
-            if (confirm("Are you sure you want to delete this librarian?")) {
-                window.location.href = url;
-            }
-        }
-    </script>
+
 </head>
 <body>
 <div class="container mt-4">
@@ -51,8 +45,7 @@
                 <td>${category.getName()}</td>
 
                 <td>
-                    <a href="javascript:void(0);"
-                       onclick="confirmDelete('${pageContext.request.contextPath}/delete-category-form?categoryId=${category.getId()}')"
+                    <a href="${pageContext.request.contextPath}/delete-category-form?categoryId=${category.getId()}"
                        class="btn btn-danger btn-sm">Delete</a>
                     <a href="${pageContext.request.contextPath}/edit-category-form?categoryId=${category.getId()}"
                        class="btn btn-warning btn-sm ml-2">Edit</a>
