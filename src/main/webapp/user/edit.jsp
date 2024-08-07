@@ -5,12 +5,12 @@
 
 <html>
 <head>
-    <title>Edit Librarian</title>
+    <title>Edit User</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-4">
-    <h2>Edit Librarian</h2>
+    <h2>Edit User</h2>
 
     <% if (request.getParameter("message") != null) { %>
     <div class="alert alert-success" role="alert">
@@ -35,6 +35,11 @@
         <div class="form-group">
             <label for="birthday">Birthday:</label>
             <input id="birthday" type="date" class="form-control" name="birthday" value="${requestScope["user"].getBirthday()}" >
+        </div>
+
+        <div class="form-group">
+            <label for="active">Active:</label>
+            <input id="active" type="text" class="form-control" name="active" value="${requestScope["user"].isActive()}" readonly>
         </div>
 
         <button type="submit" class="btn btn-primary">Update User</button>

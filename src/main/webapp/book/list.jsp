@@ -18,11 +18,20 @@
         text-decoration: none;
         color: #fff;
     }
+
+    .img-style {
+        border-radius: 10px;
+        width: 80px;
+    }
+
+    .middle {
+
+    }
 </style>
 <body>
 <div class="container mt-4">
     <center>
-        <h1>User Management</h1>
+        <h1>Book Management</h1>
 
     </center>
     </form>
@@ -43,10 +52,10 @@
         <c:set var="count" value="0" scope="page"/>
         <c:forEach var="book" items="${bookList}">
             <c:set var="count" value="${count + 1}" scope="page"/>
-            <tr>
+            <tr class="middle">
                 <td><c:out value="${count}"/></td>
                 <td>
-                    <img src="${book.imgUrl}" alt="${book.name}" />
+                    <img class="img-thumbnail img-style" src="${book.imgUrl}" alt="${book.name}" />
                 </td>
                 <td><c:out value="${book.isbn}"/></td>
                 <td><c:out value="${book.name}"/></td>
@@ -68,5 +77,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<%@ include file="../footer.jsp" %>
 </body>
 

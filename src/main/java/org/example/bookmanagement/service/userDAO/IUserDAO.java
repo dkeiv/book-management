@@ -17,4 +17,5 @@ public interface IUserDAO {
 
     List<User> getAllUser();
 
+    List<User> searchByName(String name) throws SQLException;
 }

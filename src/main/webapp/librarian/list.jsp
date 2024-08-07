@@ -22,6 +22,8 @@
 </style>
 <body>
 <div class="container mt-4">
+    <center>
+        <h1>Librarian Management</h1>
 
     <form action="${pageContext.request.contextPath}/search-librarian" method="get" class="mb-4">
         <div class="input-group">
