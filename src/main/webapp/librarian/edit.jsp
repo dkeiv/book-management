@@ -28,7 +28,7 @@
 
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" value="${librarian.password}" required />
+            <input type="text" class="form-control" id="password" name="password" value="${librarian.password}" required />
         </div>
 
         <button type="submit" class="btn btn-primary">Update Librarian</button>
