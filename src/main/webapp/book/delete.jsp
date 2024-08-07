@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../header.jsp"%>
 <%@ include file="../navbar.jsp"%>
-<form method="POST" action="${pageContext.request.contextPath}/edit-book">
+<form method="POST" action="${pageContext.request.contextPath}/delete-book">
 
 
     <head>

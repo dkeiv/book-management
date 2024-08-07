@@ -33,7 +33,7 @@ public class EditFormPost extends HttpServlet {
             bookDAO.updateBook(id, book);
             bookDAO.addBookCategory(book, bookCategory);
 
-            request.setAttribute("message", "success");
+            request.setAttribute("message", " Edit Success");
             request.getRequestDispatcher("success.jsp").forward(request, response);
         } catch (SQLException e) {
             request.setAttribute("exception", e);

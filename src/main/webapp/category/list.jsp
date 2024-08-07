@@ -20,11 +20,20 @@
 
 </head>
 <body>
+
 <div class="container mt-4">
     <center>
         <h1>Category Management</h1>
 
     </center>
+    <form action="${pageContext.request.contextPath}/search-category" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="name" class="form-control" placeholder="Search by name">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
     </form>
 
     <table class="table table-striped">

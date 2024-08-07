@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(value = "/borrow-book-form")
+@WebServlet(value = "/create-borrow-form")
 public class CreateFormGet extends HttpServlet {
     BookDAOInterface bookDAO = new BookDAO();
 

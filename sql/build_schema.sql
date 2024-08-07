@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS bookC04;
-USE bookC04;
+USE borokC04;
 
 CREATE TABLE IF NOT EXISTS book
 (
@@ -232,3 +232,5 @@ BEGIN
     DELETE FROM borrow_book WHERE id = borrowId;
 END//
 DELIMITER ;
+
+insert into librarian (id, name, email, password) value (null, 'Nguyen Huu Trang', 'nguyenhuutrang007@gmail.com', '12345')
