@@ -2,6 +2,11 @@ package org.example.bookmanagement.controller.book;
 
 import org.example.bookmanagement.dbConnect.DatabaseConnect;
 import org.example.bookmanagement.model.Book;
+import org.example.bookmanagement.model.Category;
+import org.example.bookmanagement.service.bookDAO.BookDAO;
+import org.example.bookmanagement.service.bookDAO.BookDAOInterface;
+import org.example.bookmanagement.service.categoryDAO.CategoryDAO;
+import org.example.bookmanagement.service.categoryDAO.ICategoryDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,34 +22,24 @@ import java.util.List;
 
 @WebServlet(value = "/list-book")
 public class ListGet extends HttpServlet {
+    BookDAOInterface bookDAO = new BookDAO();
+    ICategoryDAO categoryDAO = new CategoryDAO();
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Book> bookList = new ArrayList<>();
-
-        try (Connection connection = DatabaseConnect.getCon()) {
-            String query = "SELECT * FROM book";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String isbn = resultSet.getString("isbn");
-                String name = resultSet.getString("name");
-                String publisher = resultSet.getString("publisher");
-                String description = resultSet.getString("description");
-                String imgUrl = resultSet.getString("img_url");
-                String condition = resultSet.getString("condition");
-                boolean borrowed = resultSet.getBoolean("borrow_status");
-
-                bookList.add(new Book(id, isbn, name, publisher, description, imgUrl, condition, borrowed));
-            }
-
+        try {
+            List<Book> bookList = bookDAO.getAllBook();
             request.setAttribute("bookList", bookList);
+
+            List<Category> categoryList = categoryDAO.selectAllCategory();
+            request.setAttribute("categoryList", categoryList);
+
+            System.out.println(categoryList);
 
             RequestDispatcher view = request.getRequestDispatcher("book/list.jsp");
             view.forward(request, response);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 }

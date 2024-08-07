@@ -30,12 +30,9 @@
 </style>
 <body>
 <div class="container mt-4">
-    <center>
         <h1>Book Management</h1>
 
-    </center>
-    </form>
-
+    <jsp:include page="search.jsp" />
     <table class="table table-striped">
         <thead>
         <tr>

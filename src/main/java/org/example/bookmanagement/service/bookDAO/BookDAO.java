@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class BookDAO implements BookDAOInterface {
-    // USER DAO goes here
+    private int numberOfRows = 0;
 
     @Override
     public List<Book> getBookByName(String name) throws SQLException {
@@ -34,19 +34,18 @@ public class BookDAO implements BookDAOInterface {
     }
 
     @Override
-    public boolean deleteBook(int id) throws SQLException {
+    public void deleteBook(int id) throws SQLException {
 
         try (Connection connection = DatabaseConnect.getCon()) {
             Book book = getBookById(id);
 
             CallableStatement call = connection.prepareCall("{CALL sp_delete_book(?)}");
             call.setString(1, book.getIsbn());
-            return call.executeUpdate() > 0;
+            call.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
     }
 
     @Override
@@ -305,7 +304,7 @@ public class BookDAO implements BookDAOInterface {
     @Override
     public void deleteBorrowBook(int id) throws SQLException {
         try (Connection connection = DatabaseConnect.getCon()) {
-            CallableStatement callableStatement = connection.prepareCall("{call delete_borrow(?)}");
+            CallableStatement callableStatement = connection.prepareCall("{call sp_delete_borrow(?)}");
             callableStatement.setInt(1, id);
             callableStatement.execute();
         } catch (SQLException e) {
@@ -328,8 +327,67 @@ public class BookDAO implements BookDAOInterface {
             preparedStatement.setInt(6, borrowBook.getId());
             preparedStatement.executeUpdate();
 
+            if (BorrowBook.Status.valueOf(borrowBook.getStatus()) == BorrowBook.Status.RETURNED) {
+                query = "UPDATE book SET borrow_status = FALSE WHERE isbn = ?";
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, borrowBook.getBookIsbn());
+                preparedStatement.executeUpdate();
+            }
+            // TODO: more validate
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Book> searchBookByCategoryId(int categoryId) throws SQLException {
+        List<Book> bookList = new ArrayList<>();
+        String query = "SELECT book.id, book.isbn, book.name, book.description, book.publisher, book.img_url, book.`condition`, book.borrow_status FROM book_category, book WHERE category_id = ? and isbn = book_isbn";
+
+        try (Connection connection = DatabaseConnect.getCon()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, categoryId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                bookList.add(makeBookFromResultSet(resultSet));
+            }
+        }
+
+        return bookList;
+    }
+
+    @Override
+    public List<Book> getAllBook(int page, int numberOfRows) throws SQLException {
+        List<Book> bookList = new ArrayList<>();
+        String query = "SELECT * FROM book LIMIT ?, ?";
+
+        try (Connection connection = DatabaseConnect.getCon()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, page - 1);
+            preparedStatement.setInt(2, numberOfRows);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                bookList.add(makeBookFromResultSet(resultSet));
+            }
+
+            resultSet.close();
+
+            query = "SELECT FOUND_ROWS()";
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                this.numberOfRows = resultSet.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return bookList;
+    }
+
+    public int getNumberOfRows() {
+        return this.numberOfRows;
     }
 }
