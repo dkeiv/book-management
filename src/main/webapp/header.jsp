@@ -73,10 +73,10 @@
 
             <div class="header__search ">
                 <div class="header__search-input-warp">
-                    <c:if test="${pageTitle != null}">
                         <input type="text" class="header__search-input" placeholder="Nhập để tìm kiếm..."
                                value="${pageTitle}" name="pageTitle">
-                    </c:if>
+
+<%--                    <input type="text" class="header__search-input">--%>
                 </div>
                 <button class="header__search-btn">
                     <i class="header__search-btn-icon fa-solid fa-magnifying-glass"></i>
@@ -114,4 +114,8 @@
     </div>
 </div>
 </body>
+<script>
+
+
+</script>
 </html>

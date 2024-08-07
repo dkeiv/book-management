@@ -10,16 +10,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-@WebServlet(value = "/create-librarian")
-public class CreateFormPost extends HttpServlet {
-    private static final ILibrarianDAO librarianDAO =new LibrarianDAO();
+
+@WebServlet(value = "/login-form")
+public class LoginFormPost extends HttpServlet {
+    private static final ILibrarianDAO librarianDAO = new LibrarianDAO();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        librarianDAO.insertLibrarian(new Librarian(name,email,password));
-        resp.sendRedirect("/list-librarian");
+
+
+        Librarian librarian = librarianDAO.searchByEmail(email);
+        if (librarian != null && librarian.getPassword().equals(password)) {
+            // Đăng nhập thành công
+            req.getSession().setAttribute("librarian", librarian);
+            resp.sendRedirect(req.getContextPath() + "/list-librarian");
+        } else {
+            // Đăng nhập thất bại
+            req.setAttribute("errorMessage", "Invalid email or password");
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
+        }
     }
 }

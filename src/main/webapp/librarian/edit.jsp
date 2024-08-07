@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="../header.jsp"%>
+<%@ include file="../navbar.jsp"%>
 <html>
 <head>
     <title>Edit Librarian</title>
@@ -8,11 +10,7 @@
 <div class="container mt-4">
     <h2>Edit Librarian</h2>
 
-    <% if (request.getParameter("message") != null) { %>
-    <div class="alert alert-success" role="alert">
-        <%= request.getParameter("message") %>
-    </div>
-    <% } %>
+
 
     <form action="${pageContext.request.contextPath}/edit-librarian" method="post">
 
@@ -30,7 +28,7 @@
 
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" value="${librarian.password}" required />
+            <input type="text" class="form-control" id="password" name="password" value="${librarian.password}" required />
         </div>
 
         <button type="submit" class="btn btn-primary">Update Librarian</button>

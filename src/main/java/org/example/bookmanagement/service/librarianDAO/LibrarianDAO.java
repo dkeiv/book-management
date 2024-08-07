@@ -1,14 +1,15 @@
-package org.example.bookmanagement.service;
+package org.example.bookmanagement.service.librarianDAO;
 
 import org.example.bookmanagement.dbConnect.DatabaseConnect;
 import org.example.bookmanagement.model.Librarian;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LibrarianDAO implements ILibrarianDAO {
@@ -112,17 +113,17 @@ public class LibrarianDAO implements ILibrarianDAO {
     @Override
     public List<Librarian> searchByName(String name) {
         List<Librarian> librarianList = new ArrayList<>();
-        String query = "SELECT * FROM librarian where name = ?";
+        String query = "SELECT * FROM librarian where name LIKE ?";
         try (Connection connection = DatabaseConnect.getCon();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, "name");
+            preparedStatement.setString(1, "%" + name + "%");
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nameLibrarian = rs.getString("name");
                 String email = rs.getString("email");
                 String password = rs.getString("password");
-                librarianList.add(new Librarian(id,nameLibrarian,email,password));
+                librarianList.add(new Librarian(id, nameLibrarian, email, password));
 
             }
         } catch (SQLException e) {
@@ -130,4 +131,26 @@ public class LibrarianDAO implements ILibrarianDAO {
         }
         return librarianList;
     }
+    @Override
+    public Librarian searchByEmail(String email) {
+        Librarian librarian = null;
+        String query = "SELECT * FROM librarian WHERE email = ?";
+        try (Connection connection = DatabaseConnect.getCon();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, email);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (rs.next()) {
+                    int id = rs.getInt("id");
+                    String name = rs.getString("name");
+                    String password = rs.getString("password");
+                    librarian = new Librarian(id, name, email, password);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding librarian by email", e);
+        }
+        return librarian;
+    }
+
 }

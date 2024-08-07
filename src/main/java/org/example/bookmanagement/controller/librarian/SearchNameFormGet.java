@@ -1,8 +1,8 @@
 package org.example.bookmanagement.controller.librarian;
 
 import org.example.bookmanagement.model.Librarian;
-import org.example.bookmanagement.service.ILibrarianDAO;
-import org.example.bookmanagement.service.LibrarianDAO;
+import org.example.bookmanagement.service.librarianDAO.ILibrarianDAO;
+import org.example.bookmanagement.service.librarianDAO.LibrarianDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(value = "/list-librarian?name=?")
+@WebServlet(value = "/search-librarian")
 public class SearchNameFormGet extends HttpServlet {
     private static final ILibrarianDAO librarianDAO = new LibrarianDAO();
 

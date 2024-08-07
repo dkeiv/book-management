@@ -8,13 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Librarian List</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script>
-        function confirmDelete(url) {
-            if (confirm("Are you sure you want to delete this librarian?")) {
-                window.location.href = url;
-            }
-        }
-    </script>
 </head>
 <style>
     .table {
@@ -25,11 +18,20 @@
         text-decoration: none;
         color: #fff;
     }
+
+    .img-style {
+        border-radius: 10px;
+        width: 80px;
+    }
+
+    .middle {
+
+    }
 </style>
 <body>
 <div class="container mt-4">
     <center>
-        <h1>User Management</h1>
+        <h1>Book Management</h1>
 
     </center>
     </form>
@@ -50,10 +52,10 @@
         <c:set var="count" value="0" scope="page"/>
         <c:forEach var="book" items="${bookList}">
             <c:set var="count" value="${count + 1}" scope="page"/>
-            <tr>
+            <tr class="middle">
                 <td><c:out value="${count}"/></td>
                 <td>
-                    <img src="${book.imgUrl}" alt="${book.name}" />
+                    <img class="img-thumbnail img-style" src="${book.imgUrl}" alt="${book.name}" />
                 </td>
                 <td><c:out value="${book.isbn}"/></td>
                 <td><c:out value="${book.name}"/></td>
@@ -61,8 +63,8 @@
                 <td><c:out value="${book.condition}"/></td>
                 <td><c:out value="${book.borrowed}"/></td>
                 <td>
-                    <a href="javascript:void(0);" onclick="confirmDelete('${pageContext.request.contextPath}/edit-book-form?bookId=${book.id}')" class="btn btn-danger btn-sm">Delete</a>
-                    <a href="${pageContext.request.contextPath}/edit-book-form?id=${book.id}" class="btn btn-warning btn-sm ml-2">Edit</a>
+                    <a href="javascript:void(0);" onclick="confirmDelete('${pageContext.request.contextPath}/delete-book-form?bookId=${book.id}')" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="${pageContext.request.contextPath}/edit-book-form?bookId=${book.id}" class="btn btn-warning btn-sm ml-2">Edit</a>
                 </td>
             </tr>
         </c:forEach>
@@ -75,5 +77,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<%@ include file="../footer.jsp" %>
 </body>
 
