@@ -1,14 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../header.jsp"%>
-<%@ include file="../navbar.jsp"%>
+<%@ include file="../header.jsp" %>
+<%@ include file="../navbar.jsp" %>
+<head>
+    <title>Edit Book</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
 <form method="POST" action="${pageContext.request.contextPath}/delete-book">
-
-
-    <head>
-        <title>Edit Book</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    </head>
-    <body>
     <div class="container mt-4">
         <h2>Edit book</h2>
 
@@ -30,20 +28,22 @@
 
             <div class="form-group">
                 <label for="bookName">Name:</label>
-                <input type="text" class="form-control" id="Bookname" name="bookName" required value="${book.name}" readonly>
+                <input type="text" class="form-control" id="Bookname" name="bookName" required value="${book.name}"
+                       readonly>
 
             </div>
 
             <div class="form-group">
                 <label for="bookCondition">Condition:</label>
-                <input type="text" class="form-control" id="bookCondition" name="bookCondition" value="${book.condition}" readonly>
+                <input type="text" class="form-control" id="bookCondition" name="bookCondition"
+                       value="${book.condition}" readonly>
 
             </div>
 
             <div class="form-group">
                 <label for="bookPublisher">Publisher:</label>
                 <select class="form-control" id="bookPublisher" name="bookPublisher" readonly>
-                    <c:forEach  var="publisher" items="${publisherList}">
+                    <c:forEach var="publisher" items="${publisherList}">
                         <option value="${publisher}"
                                 <c:if test="${publisher == book.publisher}">selected</c:if> >${publisher}</option>
                         </option>
@@ -53,7 +53,8 @@
 
             <div class="form-group">
                 <label for="bookCategory">Category:</label>
-                <select class="form-control" id="bookCategory" class="form-select" size="3" name="bookCategory" multiple="multiple" readonly>
+                <select class="form-control" id="bookCategory" class="form-select" size="3" name="bookCategory"
+                        multiple="multiple" readonly>
                     <c:forEach var="category" items="${categoryList}">
                         <option value="${category.id}"
                                 <c:if test="${bookCategoryList.contains(category.name)}">selected</c:if>>
@@ -65,12 +66,14 @@
 
             <div class="form-group">
                 <label for="bookImage">Img:</label>
-                <input type="text" class="form-control" name="bookImage" id="bookImage" type="url" value="${book.imgUrl}">
+                <input type="text" class="form-control" name="bookImage" id="bookImage" type="url"
+                       value="${book.imgUrl}">
             </div>
 
             <div class="form-group">
                 <label for="bookDescription">Description</label>
-                <textarea type="text" class="form-control" id="bookDescription" name="bookDescription" cols="50" rows="4">${book.description}</textarea>
+                <textarea type="text" class="form-control" id="bookDescription" name="bookDescription" cols="50"
+                          rows="4">${book.description}</textarea>
             </div>
 
             <div class="form-group">
@@ -93,5 +96,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </body>
 </form>
+</body>

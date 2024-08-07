@@ -42,7 +42,6 @@
             </div>
         </div>
     </form>
-    </form>
 
     <table class="table table-striped">
         <thead>
