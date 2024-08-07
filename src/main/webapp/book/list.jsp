@@ -29,11 +29,19 @@
     }
 </style>
 <body>
+
 <div class="container mt-4">
     <center>
         <h1>Book Management</h1>
-
     </center>
+    <form action="${pageContext.request.contextPath}/search-book" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="name" class="form-control" placeholder="Search by name">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
     </form>
 
     <table class="table table-striped">
@@ -63,7 +71,7 @@
                 <td><c:out value="${book.condition}"/></td>
                 <td><c:out value="${book.borrowed}"/></td>
                 <td>
-                    <a href="javascript:void(0);" onclick="confirmDelete('${pageContext.request.contextPath}/delete-book-form?bookId=${book.id}')" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="${pageContext.request.contextPath}/delete-book-form?bookId=${book.id}" class="btn btn-danger btn-sm">Delete</a>
                     <a href="${pageContext.request.contextPath}/edit-book-form?bookId=${book.id}" class="btn btn-warning btn-sm ml-2">Edit</a>
                 </td>
             </tr>
