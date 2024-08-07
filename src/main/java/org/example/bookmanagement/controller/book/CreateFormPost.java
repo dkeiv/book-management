@@ -29,7 +29,9 @@ public class CreateFormPost extends HttpServlet {
             bookDAO.insertBook(book);
             bookDAO.addBookCategory(book, categoryIdList);
 
-            response.sendRedirect("/");
+            request.setAttribute("message", "Created Successfully");
+            request.getRequestDispatcher("success.jsp").forward(request, response);
+
         } catch (SQLException e) {
             request.setAttribute("exception", e);
             request.getRequestDispatcher("error.jsp").forward(request, response);

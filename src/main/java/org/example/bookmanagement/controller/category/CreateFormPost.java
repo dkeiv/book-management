@@ -18,14 +18,15 @@ public class CreateFormPost extends HttpServlet {
     ICategoryDAO categoryDAO = new CategoryDAO();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String categoryName = req.getParameter("category-name");
+        String categoryName = req.getParameter("name");
         Category category = new Category(categoryName);
         try {
             categoryDAO.createCategory(category);
+            req.setAttribute("message", "Deleted Successfully");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("success.jsp");
+            dispatcher.forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("user/create.jsp");
-        dispatcher.forward(req, resp);
     }
 }

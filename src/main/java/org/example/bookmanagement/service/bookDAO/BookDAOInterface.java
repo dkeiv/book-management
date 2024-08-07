@@ -17,11 +17,13 @@ public interface BookDAOInterface {
 
     void updateBook(int id, Book book) throws SQLException;
 
-    boolean deleteBook(int id) throws SQLException;
+    void deleteBook(int id) throws SQLException;
 
     List<Book> getBookByName(String name) throws SQLException;
 
     List<Book> getAllBook();
+
+    List<Book> getAllBook(int page, int numberOfRows) throws SQLException;
 
     List<String> getAllPublisher() throws SQLException;
 
@@ -31,6 +33,7 @@ public interface BookDAOInterface {
 
     List<String> getCategoryByBookId(int id) throws SQLException;
 
+    List<Book> searchBookByCategoryId(int categoryId) throws SQLException;
 //    List<Book> searchBook(String name, String price, String category, String color);
 
     List<BorrowBook> getAllBorrowBook() throws SQLException;

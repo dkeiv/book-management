@@ -15,4 +15,6 @@ public interface ICategoryDAO {
     Category getCategoryById(int id) throws SQLException;
 
     List<Category> selectAllCategory();
+
+    List<Category> searchCategoryByName(String name) throws SQLException;
 }

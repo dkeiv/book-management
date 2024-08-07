@@ -1,48 +1,59 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../header.jsp"%>
+<%@ include file="../navbar.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Librarian List</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script>
-        function confirmDelete(url) {
-            if (confirm("Are you sure you want to delete this librarian?")) {
-                window.location.href = url;
-            }
-        }
-    </script>
 </head>
+<style>
+    .table {
+        font-size: 13px;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+</style>
 <body>
 <div class="container mt-4">
     <center>
-        <h1>User Management</h1>
-        <h2>
-            <a href="/users?action=create">Add New User</a>
-        </h2>
-    </center>
+        <h1>Librarian Management</h1>
+
+    <form action="${pageContext.request.contextPath}/search-librarian" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="name" class="form-control" placeholder="Search by name">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
     </form>
 
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Password</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${librarianList}" var="librarian">
+        <c:set var="count" value="0" scope="page"/>
+        <c:forEach var="librarian" items="${librarianList}">
+            <c:set var="count" value="${count + 1}" scope="page"/>
+
             <tr>
-                <td>${librarian.id}</td>
+                <td><c:out value="${count}"/></td>
                 <td>${librarian.name}</td>
                 <td>${librarian.email}</td>
-                <td>${librarian.password}</td>
                 <td>
-                    <a href="javascript:void(0);" onclick="confirmDelete('${pageContext.request.contextPath}/delete-librarian?id=${librarian.id}')" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="${pageContext.request.contextPath}/delete-librarian-form?id=${librarian.id}" class="btn btn-danger btn-sm ml-2">Delete</a>
                     <a href="${pageContext.request.contextPath}/edit-librarian-form?id=${librarian.id}" class="btn btn-warning btn-sm ml-2">Edit</a>
                 </td>
             </tr>
@@ -50,7 +61,7 @@
         </tbody>
     </table>
 
-    <a href="${pageContext.request.contextPath}/create-librarian-form" class="btn btn-primary">Add New</a>
+    <a href="${pageContext.request.contextPath}/create-librarian-form" class="btn btn-primary btn-lg">Add New</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

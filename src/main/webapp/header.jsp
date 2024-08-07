@@ -73,10 +73,10 @@
 
             <div class="header__search ">
                 <div class="header__search-input-warp">
-                    <c:if test="${pageTitle != null}">
                         <input type="text" class="header__search-input" placeholder="Nhập để tìm kiếm..."
                                value="${pageTitle}" name="pageTitle">
-                    </c:if>
+
+<%--                    <input type="text" class="header__search-input">--%>
                 </div>
                 <button class="header__search-btn">
                     <i class="header__search-btn-icon fa-solid fa-magnifying-glass"></i>
@@ -91,22 +91,22 @@
                         <span class="header__cart-heading ">Quản lý tài khoản</span>
                         <ul class="header__cart-list-item">
                             <li class="header__cart-item">
-                                <h2 >Cài đặt</h2>
+                                <h4 >Cài đặt</h4>
                             </li>
                             <li class="header__cart-item">
-                                <h2 >Cài đặt</h2>
+                                <h4 >Cài đặt</h4>
                             </li>
                             <li class="header__cart-item">
-                                <h2 >Cài đặt</h2>
+                                <h4 >Cài đặt</h4>
                             </li>
                             <li class="header__cart-item">
-                                <h2 >Cài đặt</h2>
+                                <h4 >Cài đặt</h4>
                             </li>
                             <li class="header__cart-item">
-                                <h2 >Cài đặt</h2>
+                                <h4 >Cài đặt</h4>
                             </li>
                         </ul>
-                        <a href="#" class="btn btn--primary">Đăng xuất</a>
+                        <a href="#" class="btn btn-primary btn--primary">Đăng xuất</a>
                     </div>
                 </div>
             </div>
@@ -114,4 +114,8 @@
     </div>
 </div>
 </body>
+<script>
+
+
+</script>
 </html>

@@ -1,8 +1,8 @@
 package org.example.bookmanagement.controller.librarian;
 
 import org.example.bookmanagement.model.Librarian;
-import org.example.bookmanagement.service.ILibrarianDAO;
-import org.example.bookmanagement.service.LibrarianDAO;
+import org.example.bookmanagement.service.librarianDAO.ILibrarianDAO;
+import org.example.bookmanagement.service.librarianDAO.LibrarianDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
