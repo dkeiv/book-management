@@ -28,7 +28,7 @@ public class LoginFormPost extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/list-librarian");
         } else {
             // Đăng nhập thất bại
-            req.setAttribute("errorMessage", "!Invalid email or password");
+            req.setAttribute("errorMessage", "Invalid email or password");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
     }

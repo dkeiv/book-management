@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
-<form method="POST" action="${pageContext.request.contextPath}/borrow-book">
-    <c:if test="${successMsg != null}">
-        <p>${successMsg}</p>
+<form method="POST" action="${pageContext.request.contextPath}/create-borrow">
+    <c:if test="${message != null}">
+        <p>${message}</p>
     </c:if>
     <div class="container mt-4">
         <h2>Create Borrow</h2>
@@ -27,7 +27,7 @@
 
             <div class="form-group">
                 <label for="bookIsbn">Book ISBN:</label>
-                <input type="text" class="form-control" id="bookIsbn" name="bookIsbn" required pattern="[0-9\-]+" value="${borrowBook.bookIsbn}">
+                <input type="text" class="form-control" id="bookIsbn" name="bookIsbn" pattern="[0-9\-]+" required value="${borrowBook.bookIsbn}">
             </div>
 
             <div class="form-group">
@@ -37,12 +37,12 @@
 
             <div class="form-group">
                 <label for="borrowDate">Borrow Date:</label>
-                <input type="date" class="form-control" id="borrowDate" name="borrowDate" required type="date" value="${borrowBook.borrowDate}">
+                <input class="form-control" id="borrowDate" name="borrowDate" required type="date" value="${borrowBook.borrowDate}">
             </div>
 
             <div class="form-group">
-                <label for="returnDate">Return Date:</label></td>
-                <input type="date" class="form-control" id="returnDate" name="returnDate" required type="date" value="${borrowBook.returnDate}">
+                <label for="returnDate">Return Date:</label>
+                <input class="form-control" id="returnDate" name="returnDate" required type="date" value="${borrowBook.returnDate}">
             </div>
 
             <div class="form-group">
@@ -55,7 +55,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Update Borrow</button>
+            <button type="submit" class="btn btn-primary">Create Borrow</button>
             <a href="${pageContext.request.contextPath}/list-borrow" class="btn btn-secondary">Back to Borrow List</a>
 
         </form>

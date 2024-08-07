@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../header.jsp"%>
-<%@ include file="../navbar.jsp"%>
+<%@ include file="../header.jsp" %>
+<%@ include file="../navbar.jsp" %>
 
 <head>
     <meta charset="UTF-8">
@@ -23,12 +23,8 @@
 </style>
 <body>
 
-<div class="container mt-4" style="min-height: 40vh";>
-    <center>
-        <h1>Borrow Management</h1>
-
-    </center>
-    </form>
+<div class="container mt-4" style="min-height: 40vh" ;>
+    <h1>Borrow Management</h1>
 
     <table class="table table-striped">
         <thead>
@@ -44,7 +40,7 @@
         </thead>
         <tbody>
         <c:set var="count" value="0" scope="page"/>
-        <c:forEach var="book" items="${bookList}">
+        <c:forEach var="borrowBook" items="${borrowBookList}">
             <c:set var="count" value="${count + 1}" scope="page"/>
             <tr class="middle">
 
@@ -55,8 +51,10 @@
                 <td><c:out value="${borrowBook.status}"/></td>
                 <td><c:out value="${borrowBook.userId}"/></td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/delete-borrow-form?borrowId=${borrowBook.id}" class="btn btn-warning btn-sm ml-2">Delete</a>
-                    <a href="${pageContext.request.contextPath}/edit-borrow-form?borrowId=${borrowBook.id}" class="btn btn-danger btn-sm">Edit</a>
+                    <a href="${pageContext.request.contextPath}/delete-borrow-form?borrowId=${borrowBook.id}"
+                       class="btn btn-warning btn-sm ml-2">Delete</a>
+                    <a href="${pageContext.request.contextPath}/edit-borrow-form?borrowId=${borrowBook.id}"
+                       class="btn btn-danger btn-sm">Edit</a>
                 </td>
             </tr>
         </c:forEach>
