@@ -24,7 +24,8 @@ public class DeleteFormPost extends HttpServlet {
 
             if (borrowBook.getStatus().equals(BorrowBook.Status.RETURNED.getDescription())) {
                 bookDAO.deleteBorrowBook(borrowId);
-                response.sendRedirect("success.jsp");
+                request.setAttribute("message", "Deleted Successfully");
+                request.getRequestDispatcher("success.jsp").forward(request, response);
                 return;
             }
 

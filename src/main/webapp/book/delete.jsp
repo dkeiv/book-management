@@ -42,8 +42,8 @@
 
             <div class="form-group">
                 <label for="bookPublisher">Publisher:</label>
-                <select class="form-control" id="bookPublisher" name="bookPublisher" readonly>
-                    <c:forEach var="publisher" items="${publisherList}">
+                <select class="form-control" id="bookPublisher" name="bookPublisher" disabled>
+                    <c:forEach  var="publisher" items="${publisherList}">
                         <option value="${publisher}"
                                 <c:if test="${publisher == book.publisher}">selected</c:if> >${publisher}</option>
                         </option>
@@ -53,8 +53,7 @@
 
             <div class="form-group">
                 <label for="bookCategory">Category:</label>
-                <select class="form-control" id="bookCategory" class="form-select" size="3" name="bookCategory"
-                        multiple="multiple" readonly>
+                <select class="form-control" id="bookCategory" class="form-select" size="3" name="bookCategory" multiple="multiple" disabled>
                     <c:forEach var="category" items="${categoryList}">
                         <option value="${category.id}"
                                 <c:if test="${bookCategoryList.contains(category.name)}">selected</c:if>>
@@ -66,19 +65,17 @@
 
             <div class="form-group">
                 <label for="bookImage">Img:</label>
-                <input type="text" class="form-control" name="bookImage" id="bookImage" type="url"
-                       value="${book.imgUrl}">
+                <input class="form-control" name="bookImage" id="bookImage" type="url" value="${book.imgUrl}" readonly>
             </div>
 
             <div class="form-group">
                 <label for="bookDescription">Description</label>
-                <textarea type="text" class="form-control" id="bookDescription" name="bookDescription" cols="50"
-                          rows="4">${book.description}</textarea>
+                <textarea type="text" class="form-control" id="bookDescription" name="bookDescription" cols="50" rows="4" disabled>${book.description}</textarea>
             </div>
 
             <div class="form-group">
                 <label for="borrowedStatus">Status</label>
-                <select type="text" class="form-control" id="borrowedStatus" name="borrowedStatus" readonly>
+                <select type="text" class="form-control" id="borrowedStatus" name="borrowedStatus" disabled>
                     <option value="true" <c:if test="${book.borrowed== true}">selected
                     </c:if>> Borrowed
                     </option>
@@ -88,7 +85,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Update Book</button>
+            <button type="submit" class="btn btn-primary">Delete Book</button>
             <a href="${pageContext.request.contextPath}/list-book" class="btn btn-secondary">Back to Book List</a>
         </form>
     </div>
@@ -97,4 +94,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </form>
+<%@ include file="../footer.jsp" %>
 </body>

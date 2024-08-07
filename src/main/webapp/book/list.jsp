@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../header.jsp"%>
-<%@ include file="../navbar.jsp"%>
+<%@ include file="../header.jsp" %>
+<%@ include file="../navbar.jsp" %>
 
 <head>
     <meta charset="UTF-8">
@@ -31,17 +31,8 @@
 <body>
 
 <div class="container mt-4">
-    <center>
-        <h1>Book Management</h1>
-    </center>
-    <form action="${pageContext.request.contextPath}/search-book" method="get" class="mb-4">
-        <div class="input-group">
-            <input type="text" name="name" class="form-control" placeholder="Search by name">
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </div>
-    </form>
+    <h1>Book Management</h1>
+    <jsp:include page="search.jsp"/>
 
     <table class="table table-striped">
         <thead>
@@ -62,7 +53,7 @@
             <tr class="middle">
                 <td><c:out value="${count}"/></td>
                 <td>
-                    <img class="img-thumbnail img-style" src="${book.imgUrl}" alt="${book.name}" />
+                    <img class="img-thumbnail img-style" src="${book.imgUrl}" alt="${book.name}"/>
                 </td>
                 <td><c:out value="${book.isbn}"/></td>
                 <td><c:out value="${book.name}"/></td>
@@ -70,8 +61,10 @@
                 <td><c:out value="${book.condition}"/></td>
                 <td><c:out value="${book.borrowed}"/></td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/delete-book-form?bookId=${book.id}" class="btn btn-danger btn-sm">Delete</a>
-                    <a href="${pageContext.request.contextPath}/edit-book-form?bookId=${book.id}" class="btn btn-warning btn-sm ml-2">Edit</a>
+                    <a href="${pageContext.request.contextPath}/delete-book-form?bookId=${book.id}"
+                       class="btn btn-danger btn-sm">Delete</a>
+                    <a href="${pageContext.request.contextPath}/edit-book-form?bookId=${book.id}"
+                       class="btn btn-warning btn-sm ml-2">Edit</a>
                 </td>
             </tr>
         </c:forEach>

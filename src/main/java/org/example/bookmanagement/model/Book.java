@@ -88,4 +88,17 @@ public class Book {
     public void setCondition(String condition) {
         this.condition = condition;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Book)) {
+            return false;
+        }
+        Book compare = (Book) obj;
+        return isbn.equals(compare.isbn);
+    }
 }

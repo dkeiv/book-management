@@ -90,12 +90,16 @@ public class CategoryDAO implements ICategoryDAO{
 
     @Override
     public List<Category> searchCategoryByName(String name) throws SQLException {
-        String category = "select * form category where name like ?;";
-        try (Connection connection = DatabaseConnect.getCon();) {
+        String category = "select * from category where name like ?";
+        List<Category> categories = new ArrayList<>();
+
+        try (Connection connection = DatabaseConnect.getCon()) {
+
             PreparedStatement statement = connection.prepareStatement(category);
             statement.setString(1, "%" + name + "%");
+
+            System.out.println(statement.toString())    ;
             ResultSet resultSet = statement.executeQuery();
-            List<Category> categories = new ArrayList<>();
             while (resultSet.next()) {
                 categories.add(new Category(resultSet.getInt("id"), resultSet.getString("name")));
             }

@@ -1,15 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../header.jsp" %>
 <%@ include file="../navbar.jsp" %>
-
 <head>
     <title>Edit Book</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <form method="POST" action="${pageContext.request.contextPath}/edit-book">
-
-
     <div class="container mt-4">
         <h2>Edit book</h2>
 

@@ -95,7 +95,7 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public List<User> searchByName(String name) throws SQLException {
-        String query = "select * from book where name like ?;";
+        String query = "select * from user where name like ?;";
 
         try (Connection connection = DatabaseConnect.getCon()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
