@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class BorrowBook {
 
-    public static enum Status {
+    public enum Status {
         BORROWING("Borrowing"),
         RETURNED("Returned"),
         OVERDUE("Over due");

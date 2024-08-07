@@ -33,8 +33,6 @@ public class ListGet extends HttpServlet {
             List<Category> categoryList = categoryDAO.selectAllCategory();
             request.setAttribute("categoryList", categoryList);
 
-            System.out.println(categoryList);
-
             RequestDispatcher view = request.getRequestDispatcher("book/list.jsp");
             view.forward(request, response);
         } catch (Exception e) {

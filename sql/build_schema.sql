@@ -232,5 +232,3 @@ BEGIN
     DELETE FROM borrow_book WHERE id = borrowId;
 END//
 DELIMITER ;
-
-insert into librarian (id, name, email, password) value (null, 'Nguyen Huu Trang', 'nguyenhuutrang007@gmail.com', '12345')
