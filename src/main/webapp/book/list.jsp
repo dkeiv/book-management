@@ -34,6 +34,9 @@
     <h1>Book Management</h1>
     <jsp:include page="search.jsp"/>
 
+<%--    <jsp:include page="nav.jsp"/>--%>
+    <%@ include file="nav.jsp"%>
+
     <table class="table table-striped">
         <thead>
         <tr>
@@ -47,7 +50,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:set var="count" value="0" scope="page"/>
+        <c:set var="count" value="${(currentPage - 1) * 10}" scope="page"/>
         <c:forEach var="book" items="${bookList}">
             <c:set var="count" value="${count + 1}" scope="page"/>
             <tr class="middle">
@@ -72,6 +75,10 @@
     </table>
 
     <a href="${pageContext.request.contextPath}/create-book-form" class="btn btn-primary">Add New</a>
+
+<%-- <jsp:include page="nav.jsp"/>--%>
+    <%@ include file="nav.jsp"%>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

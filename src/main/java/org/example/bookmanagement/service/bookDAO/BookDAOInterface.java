@@ -25,6 +25,8 @@ public interface BookDAOInterface {
 
     List<Book> getAllBook(int page, int numberOfRows) throws SQLException;
 
+    int getNumberOfRows();
+
     List<String> getAllPublisher() throws SQLException;
 
     List<Category> getAllCategory() throws SQLException;

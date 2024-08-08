@@ -363,7 +363,7 @@ public class BookDAO implements BookDAOInterface {
 
         try (Connection connection = DatabaseConnect.getCon()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, page - 1);
+            preparedStatement.setInt(1, page);
             preparedStatement.setInt(2, numberOfRows);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -372,7 +372,7 @@ public class BookDAO implements BookDAOInterface {
 
             resultSet.close();
 
-            query = "SELECT FOUND_ROWS()";
+            query = "SELECT COUNT(isbn) FROM book";
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
