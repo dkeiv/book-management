@@ -39,7 +39,13 @@
 
         <div class="form-group">
             <label for="active">Active:</label>
-            <input id="active" type="text" class="form-control" name="active" value="${requestScope["user"].isActive()}" readonly>
+            <select id="active" class="form-control" name="active">
+                <option value="true" <c:if test="${user.isActive() == true}">selected </c:if> >Active</option>
+
+                <option value="false" <c:if test="${user.isActive() == false}">selected </c:if> >Banned</option>
+
+            </select>
+<%--            <input id="active" type="text" class="form-control" name="active" value="${requestScope["user"].isActive()}">--%>
         </div>
 
         <button type="submit" class="btn btn-primary">Update User</button>

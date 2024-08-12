@@ -40,7 +40,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>#</th>
+<%--            <th>#</th>--%>
             <th>Picture</th>
             <th>ISBN</th>
             <th>Book Name</th>
@@ -50,11 +50,11 @@
         </tr>
         </thead>
         <tbody>
-        <c:set var="count" value="${(currentPage - 1) * 10}" scope="page"/>
+<%--        <c:set var="count" value="${(currentPage - 1) * 10}" scope="page"/>--%>
         <c:forEach var="book" items="${bookList}">
-            <c:set var="count" value="${count + 1}" scope="page"/>
+<%--            <c:set var="count" value="${count + 1}" scope="page"/>--%>
             <tr class="middle">
-                <td><c:out value="${count}"/></td>
+<%--                <td><c:out value="${count}"/></td>--%>
                 <td>
                     <img class="img-thumbnail img-style" src="${book.imgUrl}" alt="${book.name}"/>
                 </td>
