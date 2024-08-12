@@ -34,10 +34,13 @@
     <h1>Book Management</h1>
     <jsp:include page="search.jsp"/>
 
+<%--    <jsp:include page="nav.jsp"/>--%>
+    <%@ include file="nav.jsp"%>
+
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>#</th>
+<%--            <th>#</th>--%>
             <th>Picture</th>
             <th>ISBN</th>
             <th>Book Name</th>
@@ -47,11 +50,11 @@
         </tr>
         </thead>
         <tbody>
-        <c:set var="count" value="0" scope="page"/>
+<%--        <c:set var="count" value="${(currentPage - 1) * 10}" scope="page"/>--%>
         <c:forEach var="book" items="${bookList}">
-            <c:set var="count" value="${count + 1}" scope="page"/>
+<%--            <c:set var="count" value="${count + 1}" scope="page"/>--%>
             <tr class="middle">
-                <td><c:out value="${count}"/></td>
+<%--                <td><c:out value="${count}"/></td>--%>
                 <td>
                     <img class="img-thumbnail img-style" src="${book.imgUrl}" alt="${book.name}"/>
                 </td>
@@ -72,6 +75,10 @@
     </table>
 
     <a href="${pageContext.request.contextPath}/create-book-form" class="btn btn-primary">Add New</a>
+
+<%-- <jsp:include page="nav.jsp"/>--%>
+    <%@ include file="nav.jsp"%>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

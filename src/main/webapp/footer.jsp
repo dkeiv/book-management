@@ -28,7 +28,7 @@
                     <li class="footer-item">
                         <a href="" class="footer-item__link">Hướng dẫn</a>
                     </li>
-                 </ul>
+                </ul>
             </div>
             <div class="col">
                 <h3 class="footer__heading">Giới thiệu</h3>
@@ -82,5 +82,10 @@
         </div>
     </div>
 </div>
+<script>
+    document.querySelectorAll('tr td').forEach(node => {
+        node.classList.add('align-middle');
+    })
+</script>
 </body>
 </html>
