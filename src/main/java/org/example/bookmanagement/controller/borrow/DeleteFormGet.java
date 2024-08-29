@@ -19,6 +19,8 @@ public class DeleteFormGet  extends HttpServlet {
 
         try {
             int borrowId = Integer.parseInt(request.getParameter("borrowId"));
+            request.setAttribute("borrowId", borrowId);
+
             BorrowBook borrowBook = bookDAO.getBorrowBookById(borrowId);
             request.setAttribute("borrowBook", borrowBook);
 

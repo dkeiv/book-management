@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
     <%@ include file="css/login.css"%>
 </style>
@@ -7,6 +8,7 @@
     <p>Welcome to the library</p>
 </div>
 <div class="wrapper">
+
     <div class="card-switch">
         <label class="switch">
             <input class="toggle" type="checkbox">
@@ -18,6 +20,9 @@
                     <form action="login-form" class="flip-card__form" method="post">
                         <input type="email" placeholder="Email" name="email" class="flip-card__input">
                         <input type="password" placeholder="Password" name="password" class="flip-card__input">
+                        <c:if test="${errorMessage != null}">
+                            <h3 style="color:red;">${errorMessage}</h3>
+                        </c:if>
                         <button class="flip-card__btn">Let`s go!</button>
                     </form>
                 </div>

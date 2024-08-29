@@ -27,13 +27,20 @@ public class ListGet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<Book> bookList = bookDAO.getAllBook();
-            request.setAttribute("bookList", bookList);
+            int page = 1;
+            int recordsPerPage = 5;
+            if (request.getParameter("page") != null) {
+                page = Integer.parseInt(request.getParameter("page"));
+            }
+            List<Book> bookList1 = bookDAO.getAllBook((page - 1) * recordsPerPage, recordsPerPage);
+            int numberOfRows = bookDAO.getNumberOfRows();
+            int numberOfPage = (int)Math.ceil((double)numberOfRows / recordsPerPage);
+            request.setAttribute("bookList", bookList1);
+            request.setAttribute("numberOfPage", numberOfPage);
+            request.setAttribute("currentPage", page);
 
             List<Category> categoryList = categoryDAO.selectAllCategory();
             request.setAttribute("categoryList", categoryList);
-
-            System.out.println(categoryList);
 
             RequestDispatcher view = request.getRequestDispatcher("book/list.jsp");
             view.forward(request, response);

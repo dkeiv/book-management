@@ -51,8 +51,7 @@ html{
 
 .header{
     height: 100px;
-    background-image: linear-gradient(#fe6433, #f53e2d);
-
+    background-color: #E1DCC5;
 }
 
 .header__notify{

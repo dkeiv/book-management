@@ -14,11 +14,11 @@
 <div class="container mt-4">
     <h2>Edit Borrow</h2>
 
-    <% if (request.getParameter("message") != null) { %>
-    <div class="alert alert-success" role="alert">
-        <%= request.getParameter("message") %>
-    </div>
-    <% } %>
+    <c:if test="${message != null}" >
+        <div class="alert alert-success" role="alert">
+            ${message}
+        </div>
+    </c:if>
 
     <form method="POST" action="${pageContext.request.contextPath}/delete-borrow">
 
@@ -36,7 +36,6 @@
 
         <div class="form-group">
             <label for="borrowDate">Borrow Date:</label>
-            <input  id="password" name="password" value="${librarian.password}" required />
             <input type="date" class="form-control" id="borrowDate" name="borrowDate" required type="date" value="${borrowBook.borrowDate}" readonly>
         </div>
 
@@ -47,7 +46,7 @@
 
         <div class="form-group">
             <label for="borrowStatus">Status:</label>
-            <select type="text" class="form-control" id="borrowStatus" name="borrowStatus" >
+            <select type="text" class="form-control" id="borrowStatus" name="borrowStatus" disabled>
                 <c:forEach var="status" items="${statusList}">
                     <option value="${status}" <c:if
                             test="${status.description == borrowBook.status }"> selected </c:if>>${status.description}</option>
@@ -55,7 +54,7 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Update Borrow</button>
+        <button type="submit" class="btn btn-primary">Delete Borrow</button>
         <a href="${pageContext.request.contextPath}/list-borrow" class="btn btn-secondary">Back to Borrow List</a>
 
     </form>

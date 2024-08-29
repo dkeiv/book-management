@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../header.jsp"%>
-<%@ include file="../navbar.jsp"%>
+<%@ include file="../header.jsp" %>
+<%@ include file="../navbar.jsp" %>
 
 <head>
     <meta charset="UTF-8">
@@ -29,14 +29,18 @@
     }
 </style>
 <body>
-<div class="container mt-4">
-        <h1>Book Management</h1>
 
-    <jsp:include page="search.jsp" />
+<div class="container mt-4">
+    <h1>Book Management</h1>
+    <jsp:include page="search.jsp"/>
+
+<%--    <jsp:include page="nav.jsp"/>--%>
+    <%@ include file="nav.jsp"%>
+
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>#</th>
+<%--            <th>#</th>--%>
             <th>Picture</th>
             <th>ISBN</th>
             <th>Book Name</th>
@@ -46,13 +50,13 @@
         </tr>
         </thead>
         <tbody>
-        <c:set var="count" value="0" scope="page"/>
+<%--        <c:set var="count" value="${(currentPage - 1) * 10}" scope="page"/>--%>
         <c:forEach var="book" items="${bookList}">
-            <c:set var="count" value="${count + 1}" scope="page"/>
+<%--            <c:set var="count" value="${count + 1}" scope="page"/>--%>
             <tr class="middle">
-                <td><c:out value="${count}"/></td>
+<%--                <td><c:out value="${count}"/></td>--%>
                 <td>
-                    <img class="img-thumbnail img-style" src="${book.imgUrl}" alt="${book.name}" />
+                    <img class="img-thumbnail img-style" src="${book.imgUrl}" alt="${book.name}"/>
                 </td>
                 <td><c:out value="${book.isbn}"/></td>
                 <td><c:out value="${book.name}"/></td>
@@ -60,8 +64,10 @@
                 <td><c:out value="${book.condition}"/></td>
                 <td><c:out value="${book.borrowed}"/></td>
                 <td>
-                    <a href="javascript:void(0);" onclick="confirmDelete('${pageContext.request.contextPath}/delete-book-form?bookId=${book.id}')" class="btn btn-danger btn-sm">Delete</a>
-                    <a href="${pageContext.request.contextPath}/edit-book-form?bookId=${book.id}" class="btn btn-warning btn-sm ml-2">Edit</a>
+                    <a href="${pageContext.request.contextPath}/delete-book-form?bookId=${book.id}"
+                       class="btn btn-danger btn-sm">Delete</a>
+                    <a href="${pageContext.request.contextPath}/edit-book-form?bookId=${book.id}"
+                       class="btn btn-warning btn-sm ml-2">Edit</a>
                 </td>
             </tr>
         </c:forEach>
@@ -69,6 +75,10 @@
     </table>
 
     <a href="${pageContext.request.contextPath}/create-book-form" class="btn btn-primary">Add New</a>
+
+<%-- <jsp:include page="nav.jsp"/>--%>
+    <%@ include file="nav.jsp"%>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

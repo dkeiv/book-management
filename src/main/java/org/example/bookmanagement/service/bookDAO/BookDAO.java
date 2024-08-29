@@ -152,7 +152,6 @@ public class BookDAO implements BookDAOInterface {
             callableStatement.setString(6, book.getImgUrl());
             callableStatement.setString(7, book.getCondition());
             callableStatement.setBoolean(8, book.isBorrowed());
-            System.out.println(callableStatement.toString());
             callableStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -327,7 +326,7 @@ public class BookDAO implements BookDAOInterface {
             preparedStatement.setInt(6, borrowBook.getId());
             preparedStatement.executeUpdate();
 
-            if (BorrowBook.Status.valueOf(borrowBook.getStatus()) == BorrowBook.Status.RETURNED) {
+            if (BorrowBook.Status.valueOf(borrowBook.getStatus().toUpperCase()) == BorrowBook.Status.RETURNED) {
                 query = "UPDATE book SET borrow_status = FALSE WHERE isbn = ?";
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, borrowBook.getBookIsbn());
@@ -364,7 +363,7 @@ public class BookDAO implements BookDAOInterface {
 
         try (Connection connection = DatabaseConnect.getCon()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, page - 1);
+            preparedStatement.setInt(1, page);
             preparedStatement.setInt(2, numberOfRows);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -373,7 +372,7 @@ public class BookDAO implements BookDAOInterface {
 
             resultSet.close();
 
-            query = "SELECT FOUND_ROWS()";
+            query = "SELECT COUNT(isbn) FROM book";
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {

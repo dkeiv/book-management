@@ -39,7 +39,7 @@
             <input id="birthday" type="date" class="form-control" name="birthday" value="${requestScope["user"].getBirthday()}" >
         </div>
 
-        <button type="submit" class="btn btn-primary">Update User</button>
+        <button type="submit" class="btn btn-primary">Create User</button>
         <a href="${pageContext.request.contextPath}/list-user" class="btn btn-secondary">Back to User List</a>
     </form>
 </div>

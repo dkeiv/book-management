@@ -36,7 +36,6 @@
 
         <div class="form-group">
             <label for="borrowDate">Borrow Date:</label>
-            <input  id="password" name="password" value="${librarian.password}" required />
             <input type="date" class="form-control" id="borrowDate" name="borrowDate" required type="date" value="${borrowBook.borrowDate}">
         </div>
 

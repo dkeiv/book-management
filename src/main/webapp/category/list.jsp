@@ -20,11 +20,19 @@
 
 </head>
 <body>
+
 <div class="container mt-4">
     <center>
         <h1>Category Management</h1>
 
     </center>
+    <form action="${pageContext.request.contextPath}/search-category" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="name" class="form-control" placeholder="Search by name">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
     </form>
 
     <table class="table table-striped">
@@ -62,4 +70,3 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>

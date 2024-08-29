@@ -7,14 +7,12 @@
     <title>Libary</title>
 </head>
 <body>
-<%--<div id="container">--%>
+<jsp:include page="login.jsp" />
+
+<div id="container">
 <%--    <jsp:include page="header.jsp" />--%>
 <%--    <jsp:include page="navbar.jsp" />--%>
-<%--    <c:if test='${requestScope["message"] != null}'>--%>
-<%--        <jsp:include page="success.jsp"/>--%>
-<%--    </c:if>--%>
-<%--</div>div--%>
-
-<jsp:include page="login.jsp" />
+<%--    <jsp:include page="footer.jsp" />--%>
+</div>
 </body>
 </html>

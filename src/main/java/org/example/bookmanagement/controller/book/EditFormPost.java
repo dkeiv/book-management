@@ -25,7 +25,6 @@ public class EditFormPost extends HttpServlet {
             book.setDescription(request.getParameter("bookDescription"));
             book.setCondition(request.getParameter("bookCondition"));
             book.setImgUrl(request.getParameter("bookImage"));
-            System.out.println(request.getParameter("bookImage"));
             book.setBorrowed(Boolean.parseBoolean(request.getParameter("borrowedStatus")));
 
             String[] bookCategory = request.getParameterValues("bookCategory");
@@ -33,7 +32,7 @@ public class EditFormPost extends HttpServlet {
             bookDAO.updateBook(id, book);
             bookDAO.addBookCategory(book, bookCategory);
 
-            request.setAttribute("message", "success");
+            request.setAttribute("message", " Edit Success");
             request.getRequestDispatcher("success.jsp").forward(request, response);
         } catch (SQLException e) {
             request.setAttribute("exception", e);

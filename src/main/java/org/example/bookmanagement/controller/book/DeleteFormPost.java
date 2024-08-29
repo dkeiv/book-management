@@ -21,19 +21,19 @@ public class DeleteFormPost extends HttpServlet {
             Book book = bookDAO.getBookById(bookId);
 
             if(book == null) {
-                request.setAttribute("error", "Book does not exist");
+                request.setAttribute("message", "Book does not exist");
                 request.getRequestDispatcher("error.jsp").forward(request, response);
                 return;
             }
             if(book.isBorrowed()) {
-                request.setAttribute("exception", new ServletException("Book is being borrowed exist"));
+                request.setAttribute("message", "Book is being borrowed");
                 request.getRequestDispatcher("error.jsp").forward(request, response);
                 return;
             }
 
             bookDAO.deleteBook(bookId);
             request.setAttribute("message", "Book deleted!");
-            request.getRequestDispatcher("book/delete.jsp").forward(request, response);
+            request.getRequestDispatcher("success.jsp").forward(request, response);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
